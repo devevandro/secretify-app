@@ -155,7 +155,7 @@ export default function Sidebar({
         <div className="hidden md:flex justify-center py-3 md:py-4">
           <div className="relative w-8 h-8 md:w-10 md:h-10">
             <img
-              src="/placeholder.svg?height=40&width=40"
+              src="https://cdn.pixabay.com/photo/2020/10/26/16/31/naruto-5687811_1280.png"
               alt="User Profile"
               width={40}
               height={40}
