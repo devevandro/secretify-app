@@ -7,7 +7,6 @@ import {
   Search,
   Settings,
   Bell,
-  Layout,
   Grid,
   List,
   ArrowUpDown,
@@ -248,10 +247,16 @@ export default function Dashboard() {
               onClick={toggleSidebar}
               className="hover:bg-gray-700 p-1 rounded-md"
             >
-              <Layout className="h-5 w-5 mr-2 text-gray-400" />
+              <img
+                src={
+                  isSidebarOpen ? "/svg/menu-open.svg" : "/svg/menu-closed.svg"
+                }
+                alt=""
+                className="w-5 h-5 cursor-pointer"
+              />
             </button>
             <span className="text-[#626262] text-sm md:text-base">
-              Menu / Todas às Senhas
+              Menu / Todas as Senhas
             </span>
           </div>
 
