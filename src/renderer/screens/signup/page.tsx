@@ -22,7 +22,7 @@ export default function SignupPage() {
     <>
       <Header />
       <div className="min-h-screen w-full bg-gradient-to-br from-[#0a1520] to-[#000000] flex items-center justify-center p-4">
-        <div className="w-full max-w-6xl bg-gradient-to-br from-[#0c1824] to-[#000000] rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row">
+        <div className="w-full max-w-6xl bg-gradient-to-br from-[#0c1824] to-[#000000] rounded-2xl overflow-hidden custom-scrollbar shadow-2xl flex flex-col md:flex-row">
           {/* Left side - Logo */}
           <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col items-center">
             <div className="relative w-48 h-48 md:w-48 md:h-48 mb-6">
@@ -159,7 +159,7 @@ export default function SignupPage() {
               .
             </div>
 
-            <div className="mt-6 text-sm text-gray-400">
+            <div className="mt-3 text-sm text-gray-400">
               Já possui conta?{" "}
               <Link
                 to="/"

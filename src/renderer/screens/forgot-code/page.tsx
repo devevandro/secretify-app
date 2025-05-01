@@ -30,7 +30,7 @@ export default function ForgotCodePage() {
 
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#0a1520] to-[#121212] flex items-center justify-center p-4">
-      <div className="w-full max-w-md bg-gradient-to-br from-[#0c1824] to-[#0a141e] rounded-2xl overflow-hidden shadow-2xl p-8">
+      <div className="w-full max-w-md bg-gradient-to-br from-[#0c1824] to-[#0a141e] rounded-2xl overflow-hidden custom-scrollbar shadow-2xl p-8">
         <Link
           to="/verify"
           className="flex items-center text-gray-400 hover:text-white mb-6"

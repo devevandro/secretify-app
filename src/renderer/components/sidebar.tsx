@@ -62,31 +62,24 @@ export default function Sidebar({
     <div
       className={`${
         isOpen ? "w-56 md:w-64 lg:w-72" : "w-0 md:w-16"
-      } bg-[#1e1e1e] border-r border-gray-800 flex flex-col transition-all duration-300 overflow-hidden h-screen`}
+      } bg-[#1e1e1e] border-r border-gray-800 flex flex-col transition-all duration-300 overflow-hidden custom-scrollbar h-screen`}
     >
       {/* Logo */}
       <Header />
       <div className="p-3 md:p-4 flex items-center">
-        <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-blue-500 flex items-center justify-center mr-2">
-          <span className="text-white text-base md:text-xl font-bold">S</span>
-        </div>
-        {isOpen && (
-          <span className="text-[#58beee] text-lg md:text-2xl font-bold">
-            Secretfy
-          </span>
+        {!isOpen && (
+          <div className="w-6 h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center mr-2">
+            <img src="/img/logo-header-closed.png" />
+          </div>
         )}
+        {isOpen && <img src="/img/logo-header.png" alt="" className="w-40" />}
       </div>
 
       {/* User Profile with Background - Only show when sidebar is open and profile is visible */}
       {isOpen && isProfileVisible && (
         <div className="relative">
           <div className="relative p-3 md:p-4 flex items-center">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-900 to-blue-700 opacity-30"></div>
-            {/* <img
-              src="/public/placeholder.svg?height=100&width=300"
-              alt="Background"
-              className="object-cover opacity-20"
-            /> */}
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-900 to-blue-700 opacity-30" />
             <div className="relative z-10 flex items-center w-full">
               <div className="relative w-8 h-8 md:w-12 md:h-12 mr-2 md:mr-3">
                 <img
@@ -117,7 +110,7 @@ export default function Sidebar({
           {/* Profile Dropdown - Collapsible with smooth animation */}
           <div
             ref={profileMenuRef}
-            className="overflow-hidden transition-all duration-300 ease-in-out bg-[#2a2a2a] border-t border-gray-800"
+            className="overflow-hidden custom-scrollbar transition-all duration-300 ease-in-out bg-[#2a2a2a] border-t border-gray-800"
             style={{ maxHeight: 0 }}
           >
             <div className="py-1 md:py-2">
@@ -166,7 +159,7 @@ export default function Sidebar({
       )}
 
       {/* Navigation */}
-      <nav className="flex-1 flex flex-col mt-2 md:mt-4 overflow-y-auto">
+      <nav className="flex-1 flex flex-col mt-2 md:mt-4 overflow-y-auto custom-scrollbar custom-scrollbar">
         <div className="flex-1">
           {/* Show Profile button when profile is hidden */}
           {isOpen && !isProfileVisible && (

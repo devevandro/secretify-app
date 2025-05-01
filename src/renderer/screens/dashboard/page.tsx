@@ -238,7 +238,7 @@ export default function Dashboard() {
       />
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex-1 flex flex-col overflow-hidden custom-scrollbar">
         {/* Top Navigation */}
         <Header />
         <div className="flex items-center justify-between p-2 md:p-3 border-b border-gray-800">
@@ -252,7 +252,7 @@ export default function Dashboard() {
                   isSidebarOpen ? "/svg/menu-open.svg" : "/svg/menu-closed.svg"
                 }
                 alt=""
-                className="w-5 h-5 cursor-pointer"
+                className="w-6 h-6 cursor-pointer"
               />
             </button>
             <span className="text-[#626262] text-sm md:text-base">
@@ -334,10 +334,10 @@ export default function Dashboard() {
         </div>
 
         {/* Password Grid/List with Split View */}
-        <div className="flex-1 overflow-hidden">
+        <div className="flex-1 overflow-hidden custom-scrollbar">
           {isGridView ? (
             // Grid view - full width
-            <div className="h-full overflow-y-auto p-2 md:p-4 3xl:p-6">
+            <div className="h-full overflow-y-auto custom-scrollbar p-2 md:p-4 3xl:p-6">
               {viewType === "all" ? (
                 // Show all passwords
                 <div>{renderPasswords(filteredPasswords)}</div>
@@ -382,7 +382,7 @@ export default function Dashboard() {
               <ResizablePanel
                 defaultSize={50}
                 minSize={30}
-                className="overflow-y-auto"
+                className="overflow-y-auto custom-scrollbar"
               >
                 <div className="p-2 md:p-4 3xl:p-6">
                   {viewType === "all" ? (
@@ -431,7 +431,7 @@ export default function Dashboard() {
               <ResizablePanel
                 defaultSize={50}
                 minSize={30}
-                className="bg-[#1a1a1a] overflow-y-auto"
+                className="bg-[#1a1a1a] overflow-y-auto custom-scrollbar"
               >
                 <PasswordDetailsPanel
                   selectedPassword={selectedPassword}

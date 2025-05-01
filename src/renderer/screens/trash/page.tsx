@@ -156,7 +156,7 @@ export default function TrashPage() {
   };
 
   return (
-    <div className="flex h-screen bg-[#1e1e1e] text-white overflow-hidden">
+    <div className="flex h-screen bg-[#1e1e1e] text-white overflow-hidden custom-scrollbar">
       {/* Sidebar */}
       <Sidebar isOpen={isSidebarOpen} onToggle={toggleSidebar} />
 
@@ -261,7 +261,7 @@ export default function TrashPage() {
         {/* Trash Content */}
         <div className="flex-1 overflow-y-auto p-2 md:p-4">
           {/* Trash Notice */}
-          <div className="flex items-center justify-between bg-[#1a1a1a] p-3 md:p-4 rounded-md mb-4">
+          <div className="flex items-center justify-between bg-[#1a1a1a] p-3 md:p-4 rounded-md mb-4 custom-scrollbar">
             <div className="flex items-center">
               <input
                 type="checkbox"
@@ -313,7 +313,7 @@ export default function TrashPage() {
               {trashItems.map((item) => (
                 <div
                   key={item.id}
-                  className="overflow-hidden group relative cursor-pointer"
+                  className="overflow-hidden custom-scrollbar group relative cursor-pointer"
                 >
                   {/* Checkbox for selection */}
                   <div className="absolute top-1.5 left-1.5 md:top-2 md:left-2 z-10">
@@ -367,7 +367,7 @@ export default function TrashPage() {
               {trashItems.map((item) => (
                 <div
                   key={item.id}
-                  className="overflow-hidden group relative cursor-pointer flex bg-[#1e1e1e] hover:bg-[#252525] transition-colors duration-200 rounded-[10px]"
+                  className="overflow-hidden custom-scrollbar group relative cursor-pointer flex bg-[#1e1e1e] hover:bg-[#252525] transition-colors duration-200 rounded-[10px]"
                 >
                   {/* Icon section */}
                   <div

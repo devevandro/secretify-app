@@ -137,7 +137,7 @@ export default function PasswordCard({
     // List view layout
     return (
       <div
-        className="overflow-hidden group relative cursor-pointer flex bg-[#1e1e1e] hover:bg-[#252525] transition-colors duration-200 rounded-[10px]"
+        className="overflow-hidden custom-scrollbar group relative cursor-pointer flex bg-[#1e1e1e] hover:bg-[#252525] transition-colors duration-200 rounded-[10px]"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onClick={(e) => {
@@ -231,7 +231,7 @@ export default function PasswordCard({
   // Grid view layout (original)
   return (
     <div
-      className="overflow-hidden group relative cursor-pointer"
+      className="overflow-hidden custom-scrollbar group relative cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

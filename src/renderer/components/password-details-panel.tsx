@@ -8,7 +8,7 @@ import {
   LinkIcon,
   Copy,
   Eye,
-  EyeOff
+  EyeOff,
 } from "lucide-react";
 import { useState } from "react";
 import PasswordDetailsPanelSkeleton from "../components/password-details-panel-skeleton";
@@ -35,7 +35,7 @@ interface PasswordDetailsPanelProps {
 
 export default function PasswordDetailsPanel({
   selectedPassword,
-  isLoading = false
+  isLoading = false,
 }: PasswordDetailsPanelProps) {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -88,7 +88,7 @@ export default function PasswordDetailsPanel({
     toast.success(`${type} copiado`, {
       duration: 2000,
       className: "bg-[#1a1a1a] border-gray-700 py-1.5 px-3 text-sm",
-      position: "bottom-center"
+      position: "bottom-center",
     });
   };
 
@@ -126,7 +126,7 @@ export default function PasswordDetailsPanel({
       </div>
 
       {/* Details content */}
-      <div className="flex-1 overflow-y-auto p-4">
+      <div className="flex-1 overflow-y-auto custom-scrollbar p-4">
         {/* URL */}
         <div className="mb-6">
           <h3 className="text-sm text-gray-400 mb-2 flex items-center">

@@ -28,7 +28,7 @@ export default function LoginPage() {
     <>
       <Header />
       <div className="min-h-screen w-full bg-gradient-to-br from-[#0a1520] to-[#000000] flex items-center justify-center p-4">
-        <div className="w-full max-w-6xl bg-gradient-to-br from-[#0c1824] to-[#000000] rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row">
+        <div className="w-full max-w-6xl bg-gradient-to-br from-[#0c1824] to-[#000000] rounded-2xl overflow-hidden custom-scrollbar shadow-2xl flex flex-col md:flex-row">
           {/* Left side - Logo */}
           <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col items-center justify-center">
             <div className="relative w-48 h-48 md:w-80 md:h-80 mb-6">
@@ -88,25 +88,9 @@ export default function LoginPage() {
                 )}
               </button>
             </form>
-
-            <div className="mt-6 text-xs text-gray-500">
-              Ao se inscrever, você concorda com os{" "}
-              <Link to="/terms" className="text-[#3b9bff] hover:underline">
-                Termos de Serviço
-              </Link>{" "}
-              e a{" "}
-              <Link to="/privacy" className="text-[#3b9bff] hover:underline">
-                Política de Privacidade
-              </Link>
-              , incluindo o{" "}
-              <Link to="/cookies" className="text-[#3b9bff] hover:underline">
-                Uso de Cookies
-              </Link>
-              .
-            </div>
-            <div className="mt-6 text-xs text-gray-500">
+            <div className="mt-3 text-xs text-gray-500">
               <Link to="/signup" className="text-[#3b9bff] hover:underline">
-                Criar Conta grátis
+                Criar conta grátis
               </Link>
             </div>
           </div>

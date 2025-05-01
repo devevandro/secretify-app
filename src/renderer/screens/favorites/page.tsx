@@ -255,7 +255,7 @@ export default function FavoritesPage() {
       />
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex-1 flex flex-col overflow-hidden custom-scrollbar">
         {/* Top Navigation */}
         <Header />
         <div className="flex items-center justify-between p-2 md:p-3 border-b border-gray-800">
@@ -336,10 +336,10 @@ export default function FavoritesPage() {
         </div>
 
         {/* Password Grid/List with Split View */}
-        <div className="flex-1 overflow-hidden">
+        <div className="flex-1 overflow-hidden custom-scrollbar">
           {isGridView ? (
             // Grid view - full width
-            <div className="h-full overflow-y-auto p-2 md:p-4 3xl:p-6">
+            <div className="h-full overflow-y-auto custom-scrollbar p-2 md:p-4 3xl:p-6">
               <div className="flex items-center mb-4">
                 <Star className="h-5 w-5 md:h-6 md:w-6 text-[#6eb5e6] mr-2" />
                 <h1 className="text-lg md:text-xl font-medium text-white">
@@ -398,7 +398,7 @@ export default function FavoritesPage() {
               <ResizablePanel
                 defaultSize={50}
                 minSize={30}
-                className="overflow-y-auto"
+                className="overflow-y-auto custom-scrollbar"
               >
                 <div className="p-2 md:p-4 3xl:p-6">
                   <div className="flex items-center mb-4">
@@ -461,7 +461,7 @@ export default function FavoritesPage() {
               <ResizablePanel
                 defaultSize={50}
                 minSize={30}
-                className="bg-[#1a1a1a] overflow-y-auto"
+                className="bg-[#1a1a1a] overflow-y-auto custom-scrollbar"
               >
                 <PasswordDetailsPanel
                   selectedPassword={selectedPassword}
