@@ -130,6 +130,7 @@
     scroll-behavior: smooth;
     -webkit-app-region: no-drag;
     -webkit-font-smoothing: antialiased;
+    font-family: 'Kanit', sans-serif;
   }
 
   .draggable {
