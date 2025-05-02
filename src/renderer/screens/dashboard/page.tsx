@@ -304,11 +304,7 @@ export default function Dashboard() {
               onClick={handleOpenSortModal}
               title="Ordenar itens"
             >
-              <ArrowUpDown
-                className={`h-4 w-4 md:h-5 md:w-5 ${
-                  viewType === "type" ? "text-[#6eb5e6]" : "text-gray-400"
-                }`}
-              />
+              <img src="/svg/order-gray.svg" alt="" className="w-6 h-6" />
             </button>
             <button
               className="p-1 md:p-1.5 rounded-md hover:bg-gray-700"

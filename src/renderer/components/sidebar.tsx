@@ -187,30 +187,34 @@ export default function Sidebar({
                 isOpen ? "p-1.5 md:p-2" : "p-0 justify-center"
               } bg-blue-900 bg-opacity-30 rounded-md text-blue-400 text-xs md:text-sm`}
             >
-              <Lock className="h-4 w-4 md:h-5 md:w-5 min-w-4 md:min-w-5" />
-              {isOpen && <span className="ml-2 md:ml-3">Todas às Senhas</span>}
+              <img
+                src="/svg/key-blue.svg"
+                alt=""
+                className="w-5 h-5 md:w-5 md:h-5"
+              />
+              {isOpen && <span className="ml-2 md:ml-3">Todas as Senhas</span>}
             </Link>
           </div>
 
           <SidebarItem
-            icon={<Star className="h-4 w-4 md:h-5 md:w-5" />}
+            icon={<img src="/svg/favorite-gray.svg" alt="" className="w-5" />}
             label="Favoritos"
             isOpen={isOpen}
             href="/favorites"
             isActive={activePage === "favorites"}
           />
           <SidebarItem
-            icon={<Clock className="h-4 w-4 md:h-5 md:w-5" />}
+            icon={<img src="/svg/history-gray.svg" alt="" className="w-5" />}
             label="Recentes"
             isOpen={isOpen}
           />
           <SidebarItem
-            icon={<LinkIcon className="h-4 w-4 md:h-5 md:w-5" />}
+            icon={<img src="/svg/link-gray.svg" alt="" className="w-5 h-5" />}
             label="Meus Links"
             isOpen={isOpen}
           />
           <SidebarItem
-            icon={<Share2 className="h-4 w-4 md:h-5 md:w-5" />}
+            icon={<img src="/svg/share-gray.svg" alt="" className="w-5 h-5" />}
             label="Senhas Compartilhadas"
             isOpen={isOpen}
           />
@@ -236,12 +240,14 @@ export default function Sidebar({
             } my-2 md:my-3 border-t border-gray-700`}
           ></div>
           <SidebarItem
-            icon={<Shield className="h-4 w-4 md:h-5 md:w-5" />}
+            icon={
+              <img src="/svg/security-gray.svg" alt="" className="w-5 h-5" />
+            }
             label="Relatórios de Segurança"
             isOpen={isOpen}
           />
           <SidebarItem
-            icon={<Trash2 className="h-4 w-4 md:h-5 md:w-5" />}
+            icon={<img src="/svg/trash-gray.svg" alt="" className="w-5 h-5" />}
             label="Lixeira"
             isOpen={isOpen}
             href="/trash"
