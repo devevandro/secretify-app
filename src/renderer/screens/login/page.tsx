@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
-import Header from "renderer/components/header";
+import Header from "renderer/components/header/header";
 
 export default function LoginPage() {
   const navigate = useNavigate();

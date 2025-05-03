@@ -4,7 +4,7 @@ import type React from "react";
 import { useEffect, useRef, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
-import Header from "renderer/components/header";
+import Header from "renderer/components/header/header";
 import { toast, Toaster } from "sonner";
 
 export default function VerifyPage() {

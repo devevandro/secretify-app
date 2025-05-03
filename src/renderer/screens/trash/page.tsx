@@ -14,7 +14,7 @@ import {
   MoreVertical,
 } from "lucide-react";
 import Sidebar from "../../components/sidebar/sidebar";
-import Header from "renderer/components/header";
+import Header from "renderer/components/header/header";
 
 interface TrashItem {
   id: string;

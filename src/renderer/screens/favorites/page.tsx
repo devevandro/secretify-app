@@ -31,7 +31,7 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "../../components/ui/resizable";
-import Header from "renderer/components/header";
+import Header from "renderer/components/header/header";
 
 export default function FavoritesPage() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);

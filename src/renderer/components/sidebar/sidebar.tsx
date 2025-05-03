@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-import Header from "../header";
+import Header from "../header/header";
 import { SidebarLogo } from "../ui/sidebar/sidebar-logo";
 import { SidebarNavigation } from "../ui/sidebar/sidebar-navigation";
 import { SidebarProfile } from "../ui/sidebar/sidebar-profile";

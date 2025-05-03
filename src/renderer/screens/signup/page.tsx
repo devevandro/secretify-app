@@ -6,7 +6,7 @@ import { useState } from "react";
 
 import { Link } from "react-router-dom";
 import { ChevronDown, ArrowRight } from "lucide-react";
-import Header from "renderer/components/header";
+import Header from "renderer/components/header/header";
 
 export default function SignupPage() {
   const [email, setEmail] = useState("");
