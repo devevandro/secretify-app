@@ -162,7 +162,7 @@ export default function SignupPage() {
             <div className="mt-3 text-sm text-gray-400">
               Já possui conta?{" "}
               <Link
-                to="/"
+                to="/login"
                 className="text-[#3b9bff] hover:underline font-medium"
               >
                 Fazer Login
