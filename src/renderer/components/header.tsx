@@ -13,7 +13,7 @@ export default function Header() {
 
   return (
     <header
-      className={`draggable pb-2 w-full bg-[#141414] border-gray-900 border-b shadow-sm sticky top-0 z-10`}
+      className={`draggable h-10 fixed top-0 w-full z-10 bg-[#141414] border-b border-[#141414] shadow-sm`}
     >
       <div className="container  mx-auto px-4 py-3" />
     </header>
