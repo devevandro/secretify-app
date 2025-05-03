@@ -13,11 +13,14 @@ export default function Header() {
   }, []);
 
   if (!mounted) return null;
+  console.log("Header mounted", currentPath);
 
   return (
     <header
       className={`draggable w-full border-b-2 border-[#000000] shadow-sm bg-[#1e1e1e] ${
-        currentPath === "/" || currentPath === "/verify"
+        currentPath === "/" ||
+        currentPath === "/verify" ||
+        currentPath === "/signup"
           ? "h-10 fixed"
           : "pb-3 sticky"
       } top-0 z-10`}

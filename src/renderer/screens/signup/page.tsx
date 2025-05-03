@@ -10,11 +10,11 @@ import Header from "renderer/components/header/header";
 
 export default function SignupPage() {
   const [email, setEmail] = useState("");
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
+    setIsSubmitting(true);
     e.preventDefault();
-    // Handle signup logic here
     console.log("Signup with email:", email);
   };
 
@@ -23,16 +23,7 @@ export default function SignupPage() {
       <Header />
       <div className="min-h-screen w-full bg-gradient-to-br from-[#0a1520] to-[#000000] flex items-center justify-center p-4">
         <div className="w-full max-w-6xl bg-gradient-to-br from-[#0c1824] to-[#000000] rounded-2xl overflow-hidden custom-scrollbar shadow-2xl flex flex-col md:flex-row">
-          {/* Left side - Logo */}
-          <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col items-center">
-            <div className="relative w-48 h-48 md:w-48 md:h-48 mb-6">
-              <img
-                src="/img/logo.png"
-                alt="Secretfy Logo"
-                className="object-contain"
-              />
-            </div>
-
+          <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col items-center justify-center">
             <div className="text-white font-bold mb-4 text-sm md:text-base">
               <p>O que te espera ao criar sua conta no secretfy</p>
             </div>
@@ -109,8 +100,6 @@ export default function SignupPage() {
               </div>
             </div>
           </div>
-
-          {/* Right side - Signup Form */}
           <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
             <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">
               Crie sua conta no <span className="text-[#3b9bff]">Secretfy</span>
@@ -137,7 +126,11 @@ export default function SignupPage() {
 
               <button
                 type="submit"
-                className="w-full bg-[#3b9bff] hover:bg-[#2a8aee] text-white py-3 rounded-lg font-medium flex items-center justify-center transition-colors"
+                className={`w-full py-3 rounded-md text-white font-medium transition-colors cursor-not-allowed ${
+                  isSubmitting || !email
+                    ? "bg-[#1787c1] text-gray-100 cursor-not-allowed opacity-42"
+                    : "bg-gradient-to-bl from-[#58BFF5] to-[#0B5A85] hover:bg-[#2a8aee] text-white"
+                }`}
               >
                 <span>PROSSEGUIR</span>
               </button>
@@ -162,7 +155,7 @@ export default function SignupPage() {
             <div className="mt-3 text-sm text-gray-400">
               Já possui conta?{" "}
               <Link
-                to="/login"
+                to="/"
                 className="text-[#3b9bff] hover:underline font-medium"
               >
                 Fazer Login
