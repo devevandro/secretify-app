@@ -16,7 +16,7 @@ import {
   Wrench,
   Plus,
 } from "lucide-react";
-import Sidebar from "../../components/sidebar";
+import Sidebar from "../../components/sidebar/sidebar";
 import PasswordCard from "../../components/password-card";
 import SortModal from "../../components/sort-modal";
 import CreateModal from "../../components/create-modal";

@@ -13,7 +13,7 @@ import {
   ArrowUpDown,
   MoreVertical,
 } from "lucide-react";
-import Sidebar from "../../components/sidebar";
+import Sidebar from "../../components/sidebar/sidebar";
 import Header from "renderer/components/header";
 
 interface TrashItem {
