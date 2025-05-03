@@ -229,7 +229,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="flex h-screen bg-[#1e1e1e] text-white">
+    <div className="flex h-screen bg-[#000000] text-white">
       {/* Sidebar */}
       <Sidebar
         isOpen={isSidebarOpen}
@@ -241,7 +241,7 @@ export default function Dashboard() {
       <div className="flex-1 flex flex-col overflow-hidden custom-scrollbar">
         {/* Top Navigation */}
         <Header />
-        <div className="flex items-center justify-between p-2 md:p-3 border-b border-gray-800">
+        <div className="flex items-center justify-between p-2 md:p-3 border-b border-[#000000] bg-[#141414]">
           <div className="flex items-center">
             <button
               onClick={toggleSidebar}

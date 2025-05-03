@@ -44,7 +44,7 @@ export default function Sidebar({
     <div
       className={`${
         isOpen ? "w-56 md:w-64 lg:w-72" : "w-0 md:w-16"
-      } bg-[#1e1e1e] border-r border-gray-800 flex flex-col transition-all duration-300 overflow-hidden custom-scrollbar h-screen`}
+      } bg-[#141414] border-r-2 border-[#000000] flex flex-col transition-all duration-300 overflow-hidden custom-scrollbar h-screen`}
     >
       <Header />
       <SidebarLogo isOpen={isOpen} />

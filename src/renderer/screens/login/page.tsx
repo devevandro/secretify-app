@@ -63,8 +63,8 @@ export default function LoginPage() {
                 disabled={isSubmitting || !email}
                 className={`w-full py-3 rounded-lg font-medium flex items-center justify-center transition-colors ${
                   isSubmitting || !email
-                    ? "bg-[#93D3F5] text-gray-100 cursor-not-allowed"
-                    : "bg-gradient-to-br from-[#58BFF5] to-[#0B5A85] hover:bg-[#2a8aee] text-white cursor-pointer"
+                    ? "bg-[#1787c1] text-gray-100 cursor-not-allowed opacity-42"
+                    : "bg-gradient-to-bl from-[#58BFF5] to-[#0B5A85] hover:bg-[#2a8aee] text-white cursor-pointer"
                 }`}
               >
                 {isSubmitting ? (

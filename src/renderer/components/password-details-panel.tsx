@@ -45,7 +45,7 @@ export default function PasswordDetailsPanel({
 
   if (!selectedPassword) {
     return (
-      <div className="flex flex-col items-center justify-center h-full text-center p-6">
+      <div className="flex flex-col items-center justify-center h-full text-center p-6 bg-[#000000]">
         <div className="mb-2">
           <img src="/svg/no-item-selected.svg" alt="" width={80} height={80} />
         </div>

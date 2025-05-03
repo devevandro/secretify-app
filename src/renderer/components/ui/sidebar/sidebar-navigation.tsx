@@ -94,7 +94,7 @@ export function SidebarNavigation({
         <div
           className={`${
             isOpen ? "mx-3" : "mx-auto w-6 md:w-8"
-          } my-2 md:my-3 border-t border-gray-700`}
+          } my-2 md:my-3 border-t border-[#292929]`}
         ></div>
       </div>
 

@@ -118,9 +118,9 @@ export default function VerifyPage() {
   return (
     <>
       <Header />
-      <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center p-4 z-50">
+      <div className="fixed inset-0 bg-[#121212] bg-opacity-90 flex items-center justify-center p-4 z-50">
         {
-          <div className="w-full max-w-md bg-[#0c1824] rounded-lg shadow-xl p-6 relative">
+          <div className="w-full max-w-md bg-gradient-to-br from-[#063147] to-[#040404] rounded-lg shadow-xl p-6 relative">
             <h2 className="text-xl text-white font-medium mb-6 text-center">
               Insira o código de segurança
             </h2>
@@ -136,7 +136,7 @@ export default function VerifyPage() {
                         : code[index]
                         ? "border-gray-600"
                         : index === 0 && !code[0]
-                        ? "border-[#3b9bff]"
+                        ? "border-[#58bff5]"
                         : "border-gray-700"
                     } rounded-md flex items-center justify-center`}
                   >
@@ -159,8 +159,8 @@ export default function VerifyPage() {
                 disabled={true}
                 className={`w-full py-3 rounded-md text-white font-medium transition-colors cursor-not-allowed ${
                   !isSubmitting
-                    ? "bg-[#93D3F5] text-gray-100 cursor-not-allowed"
-                    : "bg-gradient-to-br from-[#58BFF5] to-[#0B5A85] hover:bg-[#2a8aee] text-white"
+                    ? "bg-[#1787c1] text-gray-100 cursor-not-allowed opacity-42"
+                    : "bg-gradient-to-bl from-[#58BFF5] to-[#0B5A85] hover:bg-[#2a8aee] text-white"
                 }`}
               >
                 {isSubmitting ? (
@@ -176,7 +176,7 @@ export default function VerifyPage() {
               </button>
             </div>
 
-            <div className="mt-4 text-center text-[#3b9bff] text-sm">
+            <div className="mt-4 text-center text-[#8f8f8f] text-sm">
               Acesse o dispositivo cadastrado e informe o código
             </div>
           </div>

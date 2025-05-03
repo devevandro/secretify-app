@@ -11,7 +11,7 @@ export function SidebarFooter({ isOpen }: { isOpen: boolean }) {
       <div
         className={`${
           isOpen ? "mx-3" : "mx-auto w-6 md:w-8"
-        } my-2 md:my-3 border-t border-gray-700`}
+        } my-2 md:my-3 border-t border-[#292929]`}
       ></div>
       <SidebarItem
         icon={<ImgIcon src="security-gray.svg" />}
