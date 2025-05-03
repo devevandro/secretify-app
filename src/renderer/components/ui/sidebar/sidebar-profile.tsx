@@ -2,6 +2,7 @@
 
 import { ChevronDown, User, Bell, Settings, LogOut, Eye } from "lucide-react";
 import { SidebarProfileItem } from "./sidebar-profile-item";
+import { useNavigate } from "react-router-dom";
 
 export function SidebarProfile({
   isOpen,
@@ -18,6 +19,7 @@ export function SidebarProfile({
   setIsProfileOpen: (value: boolean) => void;
   handleHideProfile: () => void;
 }) {
+  const navigate = useNavigate();
   return (
     <>
       {isOpen && isProfileVisible && (
@@ -35,8 +37,12 @@ export function SidebarProfile({
                 />
               </div>
               <div>
-                <h3 className="font-medium text-sm md:text-base">InnovaDev</h3>
-                <p className="text-xs md:text-sm text-gray-400">@innovaredev</p>
+                <h3 className="font-medium text-sm md:text-base">
+                  dev.evandro
+                </h3>
+                <p className="text-xs md:text-sm text-gray-400">
+                  dev.evandro@gmail.com
+                </p>
               </div>
               <button
                 className="ml-auto text-gray-400"
@@ -78,6 +84,7 @@ export function SidebarProfile({
             <SidebarProfileItem
               label="Sair"
               icon={<LogOut className="h-3 w-3 md:h-4 md:w-4 mr-2 md:mr-3" />}
+              onClick={() => navigate("/")}
             />
           </div>
         </div>
