@@ -5,7 +5,7 @@ import { Shield, Smile, Gamepad2, Coffee } from "lucide-react";
 export default function AboutPage() {
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#0a1520] to-[#121212] flex items-center justify-center p-4">
-      <div className="w-full max-w-3xl bg-gradient-to-br from-[#0c1824] to-[#0a141e] rounded-2xl overflow-hidden shadow-2xl p-8 md:p-12">
+      <div className="w-full max-w-3xl bg-gradient-to-br from-[#0c1824] to-[#0a141e] rounded-2xl overflow-hidden custom-scrollbar shadow-2xl p-8 md:p-12">
         <div className="flex flex-col items-center mb-10">
           <div className="relative w-32 h-32 mb-4">
             <img

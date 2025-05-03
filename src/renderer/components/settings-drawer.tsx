@@ -10,7 +10,7 @@ interface SettingsDrawerProps {
 
 export default function SettingsDrawer({
   isOpen,
-  onClose
+  onClose,
 }: SettingsDrawerProps) {
   const drawerRef = useRef<HTMLDivElement>(null);
 

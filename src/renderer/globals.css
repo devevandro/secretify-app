@@ -130,6 +130,7 @@
     scroll-behavior: smooth;
     -webkit-app-region: no-drag;
     -webkit-font-smoothing: antialiased;
+    font-family: 'Kanit', sans-serif;
   }
 
   .draggable {
@@ -139,4 +140,18 @@
   .not-draggable {
     -webkit-app-region: node;
   }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #262626;
+    border-radius: 9999px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background-color: #141414;
+  }
+
 }

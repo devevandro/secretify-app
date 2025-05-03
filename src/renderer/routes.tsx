@@ -7,6 +7,7 @@ import VerifyPage from "./screens/verify/page";
 import Dashboard from "./screens/dashboard/page";
 import FavoritesPage from "./screens/favorites/page";
 import TrashPage from "./screens/trash/page";
+import SignupPage from "./screens/signup/page";
 
 export function AppRoutes() {
   return (
@@ -18,6 +19,7 @@ export function AppRoutes() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/favorites" element={<FavoritesPage />} />
           <Route path="/trash" element={<TrashPage />} />
+          <Route path="/signup" element={<SignupPage />} />
         </>
       }
     />

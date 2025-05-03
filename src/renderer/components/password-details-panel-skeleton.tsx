@@ -11,7 +11,7 @@ export default function PasswordDetailsPanelSkeleton() {
       </div>
 
       {/* Details content */}
-      <div className="flex-1 overflow-y-auto p-4">
+      <div className="flex-1 overflow-y-auto custom-scrollbar p-4">
         {/* URL */}
         <div className="mb-6">
           <div className="h-4 w-16 bg-gray-700 rounded mb-2"></div>
@@ -52,5 +52,5 @@ export default function PasswordDetailsPanelSkeleton() {
         </div>
       </div>
     </div>
-  )
+  );
 }

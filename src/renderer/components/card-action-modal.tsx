@@ -66,7 +66,7 @@ export default function CardActionModal({
   return (
     <div
       ref={modalRef}
-      className="fixed z-50 bg-[#2a2a2a] rounded-md shadow-lg border border-gray-700 w-36 md:w-40 overflow-hidden"
+      className="fixed z-50 bg-[#2a2a2a] rounded-md shadow-lg border border-gray-700 w-36 md:w-40 overflow-hidden custom-scrollbar"
       style={{
         top: `${position.top}px`,
         left: `${position.left}px`,

@@ -7,7 +7,6 @@ import {
   Search,
   Settings,
   Bell,
-  Layout,
   Grid,
   List,
   ArrowUpDown,
@@ -17,7 +16,7 @@ import {
   Wrench,
   Plus,
 } from "lucide-react";
-import Sidebar from "../../components/sidebar";
+import Sidebar from "../../components/sidebar/sidebar";
 import PasswordCard from "../../components/password-card";
 import SortModal from "../../components/sort-modal";
 import CreateModal from "../../components/create-modal";
@@ -35,7 +34,7 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "../../components/ui/resizable";
-import Header from "renderer/components/header";
+import Header from "renderer/components/header/header";
 
 export default function Dashboard() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -230,7 +229,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="flex h-screen bg-[#1e1e1e] text-white">
+    <div className="flex h-screen bg-[#000000] text-white">
       {/* Sidebar */}
       <Sidebar
         isOpen={isSidebarOpen}
@@ -239,19 +238,25 @@ export default function Dashboard() {
       />
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex-1 flex flex-col overflow-hidden custom-scrollbar">
         {/* Top Navigation */}
         <Header />
-        <div className="flex items-center justify-between p-2 md:p-3 border-b border-gray-800">
+        <div className="flex items-center justify-between p-2 md:p-3 border-b border-[#000000] bg-[#141414]">
           <div className="flex items-center">
             <button
               onClick={toggleSidebar}
               className="hover:bg-gray-700 p-1 rounded-md"
             >
-              <Layout className="h-5 w-5 mr-2 text-gray-400" />
+              <img
+                src={
+                  isSidebarOpen ? "/svg/menu-open.svg" : "/svg/menu-closed.svg"
+                }
+                alt=""
+                className="w-6 h-6 cursor-pointer"
+              />
             </button>
             <span className="text-[#626262] text-sm md:text-base">
-              Menu / Todas às Senhas
+              Menu / Todas as Senhas
             </span>
           </div>
 
@@ -299,11 +304,7 @@ export default function Dashboard() {
               onClick={handleOpenSortModal}
               title="Ordenar itens"
             >
-              <ArrowUpDown
-                className={`h-4 w-4 md:h-5 md:w-5 ${
-                  viewType === "type" ? "text-[#6eb5e6]" : "text-gray-400"
-                }`}
-              />
+              <img src="/svg/order-gray.svg" alt="" className="w-6 h-6" />
             </button>
             <button
               className="p-1 md:p-1.5 rounded-md hover:bg-gray-700"
@@ -329,10 +330,10 @@ export default function Dashboard() {
         </div>
 
         {/* Password Grid/List with Split View */}
-        <div className="flex-1 overflow-hidden">
+        <div className="flex-1 overflow-hidden custom-scrollbar">
           {isGridView ? (
             // Grid view - full width
-            <div className="h-full overflow-y-auto p-2 md:p-4 3xl:p-6">
+            <div className="h-full overflow-y-auto custom-scrollbar p-2 md:p-4 3xl:p-6">
               {viewType === "all" ? (
                 // Show all passwords
                 <div>{renderPasswords(filteredPasswords)}</div>
@@ -377,7 +378,7 @@ export default function Dashboard() {
               <ResizablePanel
                 defaultSize={50}
                 minSize={30}
-                className="overflow-y-auto"
+                className="overflow-y-auto custom-scrollbar"
               >
                 <div className="p-2 md:p-4 3xl:p-6">
                   {viewType === "all" ? (
@@ -426,7 +427,7 @@ export default function Dashboard() {
               <ResizablePanel
                 defaultSize={50}
                 minSize={30}
-                className="bg-[#1a1a1a] overflow-y-auto"
+                className="bg-[#1a1a1a] overflow-y-auto custom-scrollbar"
               >
                 <PasswordDetailsPanel
                   selectedPassword={selectedPassword}
