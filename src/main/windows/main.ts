@@ -9,15 +9,18 @@ export async function MainWindow() {
   const window = createWindow({
     id: "main",
     title: "",
-    width: 1330,
-    height: 760,
+    width: 1200,
+    height: 650,
     maxHeight: 1200,
     minHeight: 700,
-    resizable: false,
+    resizable: true,
     show: false,
     autoHideMenuBar: true,
     titleBarStyle: "hiddenInset",
-
+    trafficLightPosition: {
+      x: 15,
+      y: 15,
+    },
     webPreferences: {
       nodeIntegration: true,
       nodeIntegrationInSubFrames: true,
