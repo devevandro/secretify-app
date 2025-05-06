@@ -23,8 +23,6 @@ import { generateMockPasswords } from "../../lib/mock-data";
 import { Toaster } from "sonner";
 import { usePlatform } from "../../hooks/use-platform";
 import PasswordDetailsPanel from "../../components/password-details-panel";
-import FloatingActionButton from "../../components/floating-action-button";
-import { toast } from "sonner";
 import PasswordCardSkeleton from "../../components/password-card-skeleton";
 import {
   ResizableHandle,
@@ -343,7 +341,7 @@ export default function FavoritesPage() {
               <div className="flex items-center mb-4">
                 <Star className="h-5 w-5 md:h-6 md:w-6 text-[#6eb5e6] mr-2" />
                 <h1 className="text-lg md:text-xl font-medium text-white">
-                  Senhas Favoritas
+                  Favoritos
                 </h1>
               </div>
 
@@ -404,7 +402,7 @@ export default function FavoritesPage() {
                   <div className="flex items-center mb-4">
                     <Star className="h-5 w-5 md:h-6 md:w-6 text-[#6eb5e6] mr-2" />
                     <h1 className="text-lg md:text-xl font-medium text-white">
-                      Senhas Favoritas
+                      Favoritos
                     </h1>
                   </div>
 
@@ -497,7 +495,6 @@ export default function FavoritesPage() {
         onClose={() => setIsSettingsDrawerOpen(false)}
       />
 
-      {/* Toast notifications */}
       <Toaster
         position="bottom-right"
         closeButton
@@ -508,17 +505,6 @@ export default function FavoritesPage() {
           duration: 4000,
         }}
       />
-
-      {/* Floating Action Button - only visible in grid view */}
-      {isGridView && (
-        <FloatingActionButton
-          onCreatePassword={handleOpenCreateModal}
-          onCreateCommand={() => toast.info("Criar novo comando")}
-          onCreateFavorite={() => toast.info("Criar novo favorito")}
-          onCreateLink={() => toast.info("Criar novo link")}
-          onCreateShared={() => toast.info("Criar senha compartilhada")}
-        />
-      )}
     </div>
   );
 }

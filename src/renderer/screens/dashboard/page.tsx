@@ -26,8 +26,6 @@ import { generateMockPasswords } from "../../lib/mock-data";
 import { Toaster } from "sonner";
 import { usePlatform } from "../../hooks/use-platform";
 import PasswordDetailsPanel from "../../components/password-details-panel";
-import FloatingActionButton from "../../components/floating-action-button";
-import { toast } from "sonner";
 import PasswordCardSkeleton from "../../components/password-card-skeleton";
 import {
   ResizableHandle,
@@ -256,7 +254,7 @@ export default function Dashboard() {
               />
             </button>
             <span className="text-[#626262] text-sm md:text-base">
-              Menu / Todas as Senhas
+              Menu / Início
             </span>
           </div>
 
@@ -457,34 +455,22 @@ export default function Dashboard() {
         isDesktop={isDesktop}
       />
 
-      {/* Settings Drawer */}
       <SettingsDrawer
         isOpen={isSettingsDrawerOpen}
         onClose={() => setIsSettingsDrawerOpen(false)}
       />
 
-      {/* Toast notifications */}
       <Toaster
         position="bottom-right"
         closeButton
         richColors
         theme="dark"
+        className="bg-amber-500"
         toastOptions={{
           className: "slide-in-from-right",
           duration: 4000,
         }}
       />
-
-      {/* Floating Action Button - only visible in grid view */}
-      {isGridView && (
-        <FloatingActionButton
-          onCreatePassword={handleOpenCreateModal}
-          onCreateCommand={() => toast.info("Criar novo comando")}
-          onCreateFavorite={() => toast.info("Criar novo favorito")}
-          onCreateLink={() => toast.info("Criar novo link")}
-          onCreateShared={() => toast.info("Criar senha compartilhada")}
-        />
-      )}
     </div>
   );
 }
