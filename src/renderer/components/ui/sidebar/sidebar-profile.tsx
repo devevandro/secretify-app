@@ -59,7 +59,7 @@ export function SidebarProfile({
 
           <div
             ref={profileMenuRef}
-            className="overflow-hidden custom-scrollbar transition-all duration-300 ease-in-out bg-[#2a2a2a] border-t border-gray-800"
+            className="overflow-hidden custom-scrollbar transition-all duration-300 ease-in-out bg-[#141414] border-t border-gray-800"
             style={{ maxHeight: 0 }}
           >
             <button
@@ -81,11 +81,21 @@ export function SidebarProfile({
               label="Configurações"
               icon={<Settings className="h-3 w-3 md:h-4 md:w-4 mr-2 md:mr-3" />}
             />
+            <div
+              className={`${
+                isOpen ? "mx-3" : "mx-auto w-6 md:w-8"
+              } my-2 md:my-3 border-t border-[#292929]`}
+            ></div>
             <SidebarProfileItem
               label="Sair"
               icon={<LogOut className="h-3 w-3 md:h-4 md:w-4 mr-2 md:mr-3" />}
               onClick={() => navigate("/")}
             />
+            <div
+              className={`${
+                isOpen ? "mx-3" : "mx-auto w-6 md:w-8"
+              } my-2 md:my-3 border-t border-[#292929]`}
+            ></div>
           </div>
         </div>
       )}

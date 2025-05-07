@@ -1,18 +1,21 @@
 "use client";
 
+import { useState } from "react";
+
 import {
-  Clock,
-  User,
   Calendar,
-  Shield,
-  LinkIcon,
+  Clock,
   Copy,
   Eye,
   EyeOff,
+  LinkIcon,
+  Shield,
+  User,
 } from "lucide-react";
-import { useState } from "react";
-import PasswordDetailsPanelSkeleton from "../components/password-details-panel-skeleton";
 import { toast } from "sonner";
+
+import PasswordDetailsPanelSkeleton from "../components/password-details-panel-skeleton";
+import { NoItem } from "./no-item";
 
 interface PasswordDetailsPanelProps {
   selectedPassword: {
@@ -45,17 +48,10 @@ export default function PasswordDetailsPanel({
 
   if (!selectedPassword) {
     return (
-      <div className="flex flex-col items-center justify-center h-full text-center p-6 bg-[#000000]">
-        <div className="mb-2">
-          <img src="/svg/no-item-selected.svg" alt="" width={80} height={80} />
-        </div>
-        <h3 className="text-xl font-medium text-[#8F8F8F] mb-2">
-          Nenhum Item Selecionado!
-        </h3>
-        <p className="text-[#666666] text-sm">
-          Selecione um item para ver seus detalhes.
-        </p>
-      </div>
+      <NoItem
+        title="Nenhum Item Selecionado!"
+        subtitle="Selecione um item para ver seus detalhes."
+      />
     );
   }
 

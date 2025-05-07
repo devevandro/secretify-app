@@ -44,14 +44,18 @@ export function SidebarNavigation({
               isOpen ? "w-full" : "w-8 h-8 md:w-10 md:h-10"
             } flex items-center ${
               isOpen ? "p-1.5 md:p-2" : "p-0 justify-center"
-            } rounded-md text-blue-400 text-xs md:text-sm`}
+            } rounded-md text-xs md:text-sm ${
+              currentPath === "/dashboard"
+                ? "text-[#58BFF5] bg-[#2a4b5c]"
+                : "text-[#626262]"
+            }`}
           >
             <ImgIcon
               src={
                 currentPath === "/dashboard" ? "key-blue.svg" : "key-gray.svg"
               }
             />
-            {isOpen && <span className="ml-2 md:ml-3">Todas as Senhas</span>}
+            {isOpen && <span className="ml-2 md:ml-3">Início</span>}
           </Link>
         </div>
 
@@ -77,12 +81,17 @@ export function SidebarNavigation({
         />
         <SidebarItem
           icon={<ImgIcon src="link-gray.svg" />}
-          label="Meus Links"
+          label="Sites Favoritos"
           isOpen={isOpen}
         />
         <SidebarItem
           icon={<ImgIcon src="share-gray.svg" />}
-          label="Senhas Compartilhadas"
+          label="Chaves de Acesso"
+          isOpen={isOpen}
+        />
+        <SidebarItem
+          icon={<ImgIcon src="share-gray.svg" />}
+          label="Conexão Banco de Dados"
           isOpen={isOpen}
         />
         <SidebarItem
