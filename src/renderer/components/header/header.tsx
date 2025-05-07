@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 export default function Header() {
@@ -13,7 +13,6 @@ export default function Header() {
   }, []);
 
   if (!mounted) return null;
-  console.log("Header mounted", currentPath);
 
   return (
     <header
