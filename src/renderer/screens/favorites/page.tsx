@@ -244,7 +244,7 @@ export default function FavoritesPage() {
   };
 
   return (
-    <div className="flex h-screen bg-[#1e1e1e] text-white">
+    <div className="flex h-screen bg-[#000000] text-white">
       {/* Sidebar */}
       <Sidebar
         isOpen={isSidebarOpen}
