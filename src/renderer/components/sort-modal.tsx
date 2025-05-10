@@ -22,7 +22,6 @@ export default function SortModal({
 }: SortModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
 
-  // Close modal when clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
@@ -37,13 +36,11 @@ export default function SortModal({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [onClose]);
 
-  // Adjust position for viewport edges
   useEffect(() => {
     if (modalRef.current && isOpen && position && isDesktop) {
       const rect = modalRef.current.getBoundingClientRect();
       const viewportWidth = window.innerWidth;
 
-      // Check if modal would go off the right edge
       if (position.left + rect.width > viewportWidth) {
         modalRef.current.style.left = "auto";
         modalRef.current.style.right = `${position.right}px`;

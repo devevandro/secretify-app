@@ -21,7 +21,6 @@ export default function FloatingActionButton({
   const [isExpanded, setIsExpanded] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
-  // Handle mouse leave to close the menu
   const handleMouseLeave = () => {
     setIsExpanded(false);
   };
@@ -39,7 +38,6 @@ export default function FloatingActionButton({
       ref={menuRef}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Action buttons that appear when expanded */}
       <div
         className={`flex flex-col-reverse items-end space-y-reverse space-y-3 mb-3 ${
           isExpanded ? "opacity-100" : "opacity-0 pointer-events-none"
@@ -81,7 +79,6 @@ export default function FloatingActionButton({
         </button>
       </div>
 
-      {/* Main button */}
       <button
         onClick={() => setIsExpanded(!isExpanded)}
         onMouseEnter={() => setIsExpanded(true)}

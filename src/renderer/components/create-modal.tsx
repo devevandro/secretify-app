@@ -2,6 +2,7 @@
 
 import { useRef, useEffect } from "react";
 import { Key, Hash, Link, Share2, X } from "lucide-react";
+import CardModalButton from "./ui/card-action-moldal/card-modal-button";
 
 interface CreateModalProps {
   isOpen: boolean;
@@ -18,7 +19,6 @@ export default function CreateModal({
 }: CreateModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
 
-  // Close modal when clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
@@ -33,13 +33,11 @@ export default function CreateModal({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [onClose]);
 
-  // Adjust position for viewport edges
   useEffect(() => {
     if (modalRef.current && isOpen && position && isDesktop) {
       const rect = modalRef.current.getBoundingClientRect();
       const viewportWidth = window.innerWidth;
 
-      // Check if modal would go off the right edge
       if (position.left + rect.width > viewportWidth) {
         modalRef.current.style.left = "auto";
         modalRef.current.style.right = `${position.right}px`;
@@ -62,7 +60,7 @@ export default function CreateModal({
     >
       <div
         ref={modalRef}
-        className={`w-64 bg-[#1a1a1a] rounded-lg shadow-xl border border-gray-800 overflow-hidden custom-scrollbar ${
+        className={`w-64 bg-[#1a1a1a] rounded-lg shadow-xl border border-[#292929] overflow-hidden custom-scrollbar ${
           isDesktop ? "absolute" : ""
         }`}
         style={isDesktop && position ? {} : undefined}
@@ -76,27 +74,25 @@ export default function CreateModal({
           </button>
         </div>
 
-        <div className="py-1">
-          <button className="w-full flex items-center px-4 py-3 text-gray-300 hover:bg-[#252525] transition-colors">
-            <Key className="h-5 w-5 mr-3 text-gray-400" />
-            <span>Criar Nova Senha</span>
-          </button>
+        <CardModalButton
+          label="Nova Senha"
+          children={<Key className="h-5 w-5 mr-3 text-gray-400" />}
+        />
 
-          <button className="w-full flex items-center px-4 py-3 text-gray-300 hover:bg-[#252525] transition-colors">
-            <Hash className="h-5 w-5 mr-3 text-gray-400" />
-            <span>Criar Novo Comando</span>
-          </button>
+        <CardModalButton
+          label="Novo Comando"
+          children={<Hash className="h-5 w-5 mr-3 text-gray-400" />}
+        />
 
-          <button className="w-full flex items-center px-4 py-3 text-gray-300 hover:bg-[#252525] transition-colors">
-            <Link className="h-5 w-5 mr-3 text-gray-400" />
-            <span>Criar Novo Link</span>
-          </button>
+        <CardModalButton
+          label="Novo Link"
+          children={<Link className="h-5 w-5 mr-3 text-gray-400" />}
+        />
 
-          <button className="w-full flex items-center px-4 py-3 text-gray-300 hover:bg-[#252525] transition-colors">
-            <Share2 className="h-5 w-5 mr-3 text-gray-400" />
-            <span>Criar Senha Compartilhada</span>
-          </button>
-        </div>
+        <CardModalButton
+          label="Compartilhar"
+          children={<Share2 className="h-5 w-5 mr-3 text-gray-400" />}
+        />
       </div>
     </div>
   );

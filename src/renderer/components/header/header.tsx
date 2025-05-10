@@ -24,7 +24,7 @@ export default function Header() {
           : "pb-3 sticky"
       } top-0 z-10`}
     >
-      <div className="container  mx-auto px-4 py-3" />
+      <div className="container mx-auto px-4 py-3" />
     </header>
   );
 }
