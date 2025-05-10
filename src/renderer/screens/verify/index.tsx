@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "renderer/components/header/header";
 import { toast, Toaster } from "sonner";
 
-export default function VerifyPage() {
+export default function VerifyScreen() {
   const navigate = useNavigate();
   const [code, setCode] = useState<string[]>(Array(6).fill(""));
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);

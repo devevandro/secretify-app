@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-import { Clock, LinkIcon, X } from "lucide-react";
+import { LinkIcon } from "lucide-react";
+import ItemDetailsModal from "./ui/item-card/item-details-modal";
 
 interface PasswordDetailsModalProps {
   isOpen: boolean;
@@ -26,7 +27,6 @@ export default function PasswordDetailsModal({
 }: PasswordDetailsModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
 
-  // Close modal when clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
@@ -41,14 +41,12 @@ export default function PasswordDetailsModal({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [onClose]);
 
-  // Adjust position for mobile screens
   useEffect(() => {
     if (modalRef.current && isOpen) {
       const rect = modalRef.current.getBoundingClientRect();
       const viewportWidth = window.innerWidth;
       const viewportHeight = window.innerHeight;
 
-      // Check if modal is outside viewport
       if (rect.right > viewportWidth) {
         const newLeft = Math.max(5, viewportWidth - rect.width - 5);
         modalRef.current.style.left = `${newLeft}px`;
@@ -66,63 +64,37 @@ export default function PasswordDetailsModal({
   return (
     <div
       ref={modalRef}
-      className="fixed z-50 bg-[#1a1a1a] rounded-md shadow-lg border border-gray-700 w-72 md:w-80 overflow-hidden custom-scrollbar"
+      className="fixed z-50 bg-[#1a1a1a] rounded-md shadow-lg border border-[#292929] w-72 md:w-80 overflow-hidden custom-scrollbar"
       style={{
         top: `${position.top}px`,
         left: `${position.left}px`,
       }}
     >
       <div className="p-4">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center">
-            <Clock className="h-5 w-5 text-gray-400 mr-2" />
-            <h3 className="text-white text-base font-medium">
-              Informação da senha
-            </h3>
-          </div>
-          <button
-            onClick={onClose}
-            className="text-gray-500 hover:text-gray-300"
-          >
-            <X className="h-4 w-4" />
-          </button>
-        </div>
-
         <div className="space-y-3">
-          <div>
-            <p className="text-gray-400 text-sm">Título:</p>
-            <p className="text-white">{passwordDetails.title}</p>
-          </div>
-
-          <div>
-            <p className="text-gray-400 text-sm">Categoria:</p>
-            <p className="text-white">{passwordDetails.category}</p>
-          </div>
-
-          <div>
-            <p className="text-gray-400 text-sm">Permissões Da Senha:</p>
-            <p className="text-white">{passwordDetails.permissions}</p>
-          </div>
-
-          <div>
-            <p className="text-gray-400 text-sm">Data Da Criação:</p>
-            <p className="text-white">{passwordDetails.creationDate}</p>
-          </div>
-
-          <div>
-            <p className="text-gray-400 text-sm">Hora Da Criação:</p>
-            <p className="text-white">{passwordDetails.creationTime}</p>
-          </div>
-
-          <div>
-            <p className="text-gray-400 text-sm">Autor:</p>
-            <p className="text-white">{passwordDetails.author}</p>
-          </div>
+          <ItemDetailsModal label="Título:" text={passwordDetails.title} />
+          <ItemDetailsModal
+            label="Categoria:"
+            text={passwordDetails.category}
+          />
+          <ItemDetailsModal
+            label="Permissões Da Senha:"
+            text={passwordDetails.permissions}
+          />
+          <ItemDetailsModal
+            label="Data Da Criação:"
+            text={passwordDetails.creationDate}
+          />
+          <ItemDetailsModal
+            label="Hora Da Criação:"
+            text={passwordDetails.creationTime}
+          />
+          <ItemDetailsModal label="Autor:" text={passwordDetails.author} />
         </div>
 
         {passwordDetails.sharingLink && (
           <>
-            <div className="my-4 border-t border-gray-700"></div>
+            <div className="my-4 border-t border-[#292929]"></div>
             <div>
               <h4 className="text-white text-sm font-medium mb-2">
                 Link de Compartilhamento

@@ -15,17 +15,15 @@ import {
   Plus,
 } from "lucide-react";
 import Sidebar from "../../components/sidebar/sidebar";
-import PasswordCard from "../../components/password-card";
+import ItemCard from "../../components/item-card";
 import SortModal from "../../components/sort-modal";
 import CreateModal from "../../components/create-modal";
 import SettingsDrawer from "../../components/settings-drawer";
 import { generateMockPasswords } from "../../lib/mock-data";
 import { Toaster } from "sonner";
 import { usePlatform } from "../../hooks/use-platform";
-import PasswordDetailsPanel from "../../components/password-details-panel";
-import FloatingActionButton from "../../components/floating-action-button";
-import { toast } from "sonner";
-import PasswordCardSkeleton from "../../components/password-card-skeleton";
+import PasswordDetailsPanel from "../../components/item-details-panel";
+import ItemCardSkeleton from "../../components/item-card-skeleton";
 import {
   ResizableHandle,
   ResizablePanel,
@@ -33,7 +31,7 @@ import {
 } from "../../components/ui/resizable";
 import Header from "renderer/components/header/header";
 
-export default function FavoritesPage() {
+export default function FavoritesScreen() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isGridView, setIsGridView] = useState(true);
   const [passwords, setPasswords] = useState<any[]>([]);
@@ -182,13 +180,13 @@ export default function FavoritesPage() {
       return isGridView ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 3xl:grid-cols-8 gap-3 md:gap-4">
           {Array.from({ length: 6 }).map((_, index) => (
-            <PasswordCardSkeleton key={index} />
+            <ItemCardSkeleton key={index} />
           ))}
         </div>
       ) : (
         <div className="flex flex-col space-y-2">
           {Array.from({ length: 5 }).map((_, index) => (
-            <PasswordCardSkeleton key={index} listView={true} />
+            <ItemCardSkeleton key={index} listView={true} />
           ))}
         </div>
       );
@@ -206,7 +204,7 @@ export default function FavoritesPage() {
       return (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 3xl:grid-cols-8 gap-3 md:gap-4">
           {passwords.map((password) => (
-            <PasswordCard
+            <ItemCard
               key={password.id}
               id={password.id}
               icon={password.icon}
@@ -226,7 +224,7 @@ export default function FavoritesPage() {
     return (
       <div className="flex flex-col space-y-2">
         {passwords.map((password) => (
-          <PasswordCard
+          <ItemCard
             key={password.id}
             id={password.id}
             icon={password.icon}
@@ -246,7 +244,7 @@ export default function FavoritesPage() {
   };
 
   return (
-    <div className="flex h-screen bg-[#1e1e1e] text-white">
+    <div className="flex h-screen bg-[#000000] text-white">
       {/* Sidebar */}
       <Sidebar
         isOpen={isSidebarOpen}
@@ -343,7 +341,7 @@ export default function FavoritesPage() {
               <div className="flex items-center mb-4">
                 <Star className="h-5 w-5 md:h-6 md:w-6 text-[#6eb5e6] mr-2" />
                 <h1 className="text-lg md:text-xl font-medium text-white">
-                  Senhas Favoritas
+                  Favoritos
                 </h1>
               </div>
 
@@ -404,7 +402,7 @@ export default function FavoritesPage() {
                   <div className="flex items-center mb-4">
                     <Star className="h-5 w-5 md:h-6 md:w-6 text-[#6eb5e6] mr-2" />
                     <h1 className="text-lg md:text-xl font-medium text-white">
-                      Senhas Favoritas
+                      Favoritos
                     </h1>
                   </div>
 
@@ -497,7 +495,6 @@ export default function FavoritesPage() {
         onClose={() => setIsSettingsDrawerOpen(false)}
       />
 
-      {/* Toast notifications */}
       <Toaster
         position="bottom-right"
         closeButton
@@ -508,17 +505,6 @@ export default function FavoritesPage() {
           duration: 4000,
         }}
       />
-
-      {/* Floating Action Button - only visible in grid view */}
-      {isGridView && (
-        <FloatingActionButton
-          onCreatePassword={handleOpenCreateModal}
-          onCreateCommand={() => toast.info("Criar novo comando")}
-          onCreateFavorite={() => toast.info("Criar novo favorito")}
-          onCreateLink={() => toast.info("Criar novo link")}
-          onCreateShared={() => toast.info("Criar senha compartilhada")}
-        />
-      )}
     </div>
   );
 }

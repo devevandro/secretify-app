@@ -1,56 +1,67 @@
-"use client"
+"use client";
 
-import { X } from "lucide-react"
-import { useRef, useEffect } from "react"
+import { X } from "lucide-react";
+import { useRef, useEffect } from "react";
 
 interface SortModalProps {
-  isOpen: boolean
-  onClose: () => void
-  onViewChange: (type: "all" | "type") => void
-  currentView: "all" | "type"
-  position?: { top: number; left: number; right: number }
-  isDesktop: boolean
+  isOpen: boolean;
+  onClose: () => void;
+  onViewChange: (type: "all" | "type") => void;
+  currentView: "all" | "type";
+  position?: { top: number; left: number; right: number };
+  isDesktop: boolean;
 }
 
-export default function SortModal({ isOpen, onClose, onViewChange, currentView, position, isDesktop }: SortModalProps) {
-  const modalRef = useRef<HTMLDivElement>(null)
+export default function SortModal({
+  isOpen,
+  onClose,
+  onViewChange,
+  currentView,
+  position,
+  isDesktop,
+}: SortModalProps) {
+  const modalRef = useRef<HTMLDivElement>(null);
 
-  // Close modal when clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
-        onClose()
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(event.target as Node)
+      ) {
+        onClose();
       }
     }
 
-    document.addEventListener("mousedown", handleClickOutside)
-    return () => document.removeEventListener("mousedown", handleClickOutside)
-  }, [onClose])
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [onClose]);
 
-  // Adjust position for viewport edges
   useEffect(() => {
     if (modalRef.current && isOpen && position && isDesktop) {
-      const rect = modalRef.current.getBoundingClientRect()
-      const viewportWidth = window.innerWidth
+      const rect = modalRef.current.getBoundingClientRect();
+      const viewportWidth = window.innerWidth;
 
-      // Check if modal would go off the right edge
       if (position.left + rect.width > viewportWidth) {
-        modalRef.current.style.left = "auto"
-        modalRef.current.style.right = `${position.right}px`
+        modalRef.current.style.left = "auto";
+        modalRef.current.style.right = `${position.right}px`;
       } else {
-        modalRef.current.style.left = `${position.left}px`
-        modalRef.current.style.right = "auto"
+        modalRef.current.style.left = `${position.left}px`;
+        modalRef.current.style.right = "auto";
       }
 
-      modalRef.current.style.top = `${position.top}px`
+      modalRef.current.style.top = `${position.top}px`;
     }
-  }, [isOpen, position, isDesktop])
+  }, [isOpen, position, isDesktop]);
 
-  if (!isOpen) return null
+  if (!isOpen) return null;
 
   return (
     <div
-      className={`fixed inset-0 z-50 ${!isDesktop ? "bg-black/50 flex items-start justify-center pt-16 md:pt-20" : ""}`}
+      className={`fixed inset-0 z-50 ${
+        !isDesktop
+          ? "bg-black/50 flex items-start justify-center pt-16 md:pt-20"
+          : ""
+      }`}
     >
       <div
         ref={modalRef}
@@ -61,8 +72,13 @@ export default function SortModal({ isOpen, onClose, onViewChange, currentView, 
       >
         <div className="p-3 md:p-4">
           <div className="flex justify-between items-center mb-3 md:mb-4">
-            <h3 className="text-white text-base md:text-lg font-medium">Ordenar Itens</h3>
-            <button onClick={onClose} className="text-gray-400 hover:text-gray-200">
+            <h3 className="text-white text-base md:text-lg font-medium">
+              Ordenar Itens
+            </h3>
+            <button
+              onClick={onClose}
+              className="text-gray-400 hover:text-gray-200"
+            >
               <X className="h-4 w-4 md:h-5 md:w-5" />
             </button>
           </div>
@@ -71,14 +87,18 @@ export default function SortModal({ isOpen, onClose, onViewChange, currentView, 
             <button
               className="w-full flex items-center justify-between p-2 rounded hover:bg-[#252525] transition-colors"
               onClick={() => {
-                onViewChange("all")
-                onClose()
+                onViewChange("all");
+                onClose();
               }}
             >
-              <span className="text-gray-200 text-sm md:text-base">Exibir todas as senhas</span>
+              <span className="text-gray-200 text-sm md:text-base">
+                Exibir tudo
+              </span>
               <div
                 className={`w-3.5 h-3.5 md:w-4 md:h-4 rounded-full border ${
-                  currentView === "all" ? "border-[#6eb5e6] bg-[#6eb5e6]" : "border-gray-500"
+                  currentView === "all"
+                    ? "border-[#6eb5e6] bg-[#6eb5e6]"
+                    : "border-gray-500"
                 }`}
               >
                 {currentView === "all" && (
@@ -90,14 +110,18 @@ export default function SortModal({ isOpen, onClose, onViewChange, currentView, 
             <button
               className="w-full flex items-center justify-between p-2 rounded hover:bg-[#252525] transition-colors"
               onClick={() => {
-                onViewChange("type")
-                onClose()
+                onViewChange("type");
+                onClose();
               }}
             >
-              <span className="text-gray-200 text-sm md:text-base">Exibir por tipos</span>
+              <span className="text-gray-200 text-sm md:text-base">
+                Exibir por tipos
+              </span>
               <div
                 className={`w-3.5 h-3.5 md:w-4 md:h-4 rounded-full border ${
-                  currentView === "type" ? "border-[#6eb5e6] bg-[#6eb5e6]" : "border-gray-500"
+                  currentView === "type"
+                    ? "border-[#6eb5e6] bg-[#6eb5e6]"
+                    : "border-gray-500"
                 }`}
               >
                 {currentView === "type" && (
@@ -109,5 +133,5 @@ export default function SortModal({ isOpen, onClose, onViewChange, currentView, 
         </div>
       </div>
     </div>
-  )
+  );
 }

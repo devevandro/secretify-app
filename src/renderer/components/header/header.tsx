@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 export default function Header() {
@@ -13,7 +13,6 @@ export default function Header() {
   }, []);
 
   if (!mounted) return null;
-  console.log("Header mounted", currentPath);
 
   return (
     <header
@@ -25,7 +24,7 @@ export default function Header() {
           : "pb-3 sticky"
       } top-0 z-10`}
     >
-      <div className="container  mx-auto px-4 py-3" />
+      <div className="container mx-auto px-4 py-3" />
     </header>
   );
 }
