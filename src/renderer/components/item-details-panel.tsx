@@ -14,10 +14,10 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 
-import PasswordDetailsPanelSkeleton from "../components/password-details-panel-skeleton";
+import ItemDetailsPanelSkeleton from "./item-details-panel-skeleton";
 import { NoItem } from "./no-item";
 
-interface PasswordDetailsPanelProps {
+interface ItemDetailsPanelProps {
   selectedPassword: {
     id: string;
     name: string;
@@ -36,14 +36,14 @@ interface PasswordDetailsPanelProps {
   isLoading?: boolean;
 }
 
-export default function PasswordDetailsPanel({
+export default function ItemDetailsPanel({
   selectedPassword,
   isLoading = false,
-}: PasswordDetailsPanelProps) {
+}: ItemDetailsPanelProps) {
   const [showPassword, setShowPassword] = useState(false);
 
   if (isLoading) {
-    return <PasswordDetailsPanelSkeleton />;
+    return <ItemDetailsPanelSkeleton />;
   }
 
   if (!selectedPassword) {
@@ -58,7 +58,6 @@ export default function PasswordDetailsPanel({
   const handleCopyToClipboard = (text: string, type: string) => {
     navigator.clipboard.writeText(text || "");
 
-    // Show toast notification
     toast.success(`${type} copiado`, {
       duration: 2000,
       className: "bg-[#1a1a1a] border-gray-700 py-1.5 px-3 text-sm",
@@ -68,7 +67,6 @@ export default function PasswordDetailsPanel({
 
   return (
     <div className="h-full flex flex-col">
-      {/* Header with icon and name */}
       <div className="p-4 border-b border-gray-800 flex items-center">
         <div
           className={`w-10 h-10 rounded-md flex items-center justify-center mr-3 ${
@@ -99,9 +97,7 @@ export default function PasswordDetailsPanel({
         </div>
       </div>
 
-      {/* Details content */}
       <div className="flex-1 overflow-y-auto custom-scrollbar p-4">
-        {/* URL */}
         <div className="mb-6">
           <h3 className="text-sm text-gray-400 mb-2 flex items-center">
             <LinkIcon className="h-4 w-4 mr-2" />
@@ -127,7 +123,6 @@ export default function PasswordDetailsPanel({
           </div>
         </div>
 
-        {/* Username */}
         <div className="mb-6">
           <h3 className="text-sm text-gray-400 mb-2 flex items-center">
             <User className="h-4 w-4 mr-2" />
@@ -155,7 +150,6 @@ export default function PasswordDetailsPanel({
           </div>
         </div>
 
-        {/* Password */}
         <div className="mb-6">
           <h3 className="text-sm text-gray-400 mb-2 flex items-center">
             <Shield className="h-4 w-4 mr-2" />
@@ -191,7 +185,6 @@ export default function PasswordDetailsPanel({
           </div>
         </div>
 
-        {/* Notes */}
         <div className="mb-6">
           <h3 className="text-sm text-gray-400 mb-2">Notas</h3>
           <div className="bg-[#2a2a2a] rounded p-3">
@@ -201,7 +194,6 @@ export default function PasswordDetailsPanel({
           </div>
         </div>
 
-        {/* Additional Info */}
         <div className="space-y-4">
           <div className="flex items-center text-sm">
             <Calendar className="h-4 w-4 text-gray-400 mr-2" />

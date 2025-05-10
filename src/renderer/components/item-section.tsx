@@ -1,17 +1,17 @@
 import type React from "react";
-interface PasswordSectionProps {
+interface ItemSectionProps {
   title: string;
   icon?: React.ReactNode;
   children: React.ReactNode;
   isLast?: boolean;
 }
 
-export default function PasswordSection({
+export default function ItemSection({
   title,
   icon,
   children,
   isLast = false,
-}: PasswordSectionProps) {
+}: ItemSectionProps) {
   return (
     <div
       className={`${
