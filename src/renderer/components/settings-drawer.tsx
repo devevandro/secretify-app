@@ -14,7 +14,6 @@ export default function SettingsDrawer({
 }: SettingsDrawerProps) {
   const drawerRef = useRef<HTMLDivElement>(null);
 
-  // Handle escape key press
   useEffect(() => {
     const handleEscapeKey = (event: KeyboardEvent) => {
       if (event.key === "Escape" && isOpen) {
@@ -26,7 +25,6 @@ export default function SettingsDrawer({
     return () => document.removeEventListener("keydown", handleEscapeKey);
   }, [isOpen, onClose]);
 
-  // Prevent body scroll when drawer is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -40,7 +38,6 @@ export default function SettingsDrawer({
 
   return (
     <>
-      {/* Backdrop */}
       <div
         className={`fixed inset-0 bg-black/50 z-40 transition-opacity duration-300 ${
           isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
@@ -48,7 +45,6 @@ export default function SettingsDrawer({
         onClick={onClose}
       />
 
-      {/* Drawer */}
       <div
         ref={drawerRef}
         className={`fixed top-0 right-0 h-full bg-[#0c0c0c] z-50 transition-transform duration-300 ease-in-out transform ${
@@ -56,7 +52,6 @@ export default function SettingsDrawer({
         }`}
         style={{ width: "min(100%, 380px)" }}
       >
-        {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-[#1a1a1a]">
           <h2 className="text-lg font-medium text-white">Configurações</h2>
           <button className="p-1 rounded-md text-gray-400 hover:text-white">
@@ -64,9 +59,7 @@ export default function SettingsDrawer({
           </button>
         </div>
 
-        {/* Content */}
         <div className="h-[calc(100%-64px)] overflow-y-auto">
-          {/* Account Settings */}
           <div className="py-4 px-5 border-b border-[#1a1a1a]">
             <div className="flex items-center mb-5">
               <svg
@@ -108,7 +101,6 @@ export default function SettingsDrawer({
             </div>
           </div>
 
-          {/* System Primary Color */}
           <div className="py-4 px-5 border-b border-[#1a1a1a]">
             <h3 className="text-white font-medium mb-5">
               Cor Primária do Sistema
@@ -137,7 +129,6 @@ export default function SettingsDrawer({
             </div>
           </div>
 
-          {/* Profile Background */}
           <div className="py-4 px-5 border-b border-[#1a1a1a]">
             <h3 className="text-white font-medium mb-5">
               Plano de Fundo do Perfil
@@ -234,7 +225,6 @@ export default function SettingsDrawer({
             </div>
           </div>
 
-          {/* Privacy and Security */}
           <div className="py-4 px-5 border-b border-[#1a1a1a]">
             <div className="flex items-center mb-5">
               <svg
@@ -301,7 +291,6 @@ export default function SettingsDrawer({
             </div>
           </div>
 
-          {/* Notifications */}
           <div className="py-4 px-5 border-b border-[#1a1a1a]">
             <div className="flex items-center mb-5">
               <svg
@@ -387,7 +376,6 @@ export default function SettingsDrawer({
             </div>
           </div>
 
-          {/* System Update */}
           <div className="py-4 px-5">
             <div className="flex items-center mb-5">
               <svg

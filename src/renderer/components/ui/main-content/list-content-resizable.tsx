@@ -8,8 +8,8 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "../resizable";
-import PasswordSection from "renderer/components/password-section";
-import PasswordDetailsPanel from "renderer/components/password-details-panel";
+import ItemSection from "renderer/components/item-section";
+import PasswordDetailsPanel from "renderer/components/item-details-panel";
 
 export function ListContentResizable({
   isLoading,
@@ -38,34 +38,34 @@ export function ListContentResizable({
             ) : (
               // Show passwords grouped by type
               <div>
-                <PasswordSection
+                <ItemSection
                   title="Senhas Pessoais"
                   icon={<Lock className="h-4 md:h-5 w-4 md:w-5" />}
                 >
                   {renderDatas(groupedDatas.personal)}
-                </PasswordSection>
+                </ItemSection>
 
-                <PasswordSection
+                <ItemSection
                   title="Senhas Compartilhadas"
                   icon={<Share2 className="h-4 md:h-5 w-4 md:w-5" />}
                 >
                   {renderDatas(groupedDatas.shared)}
-                </PasswordSection>
+                </ItemSection>
 
-                <PasswordSection
+                <ItemSection
                   title="Mídias Sociais"
                   icon={<Hash className="h-4 md:h-5 w-4 md:w-5" />}
                 >
                   {renderDatas(groupedDatas.social)}
-                </PasswordSection>
+                </ItemSection>
 
-                <PasswordSection
+                <ItemSection
                   title="Ferramentas"
                   icon={<Wrench className="h-4 md:h-5 w-4 md:w-5" />}
                   isLast={true}
                 >
                   {renderDatas(groupedDatas.tools)}
-                </PasswordSection>
+                </ItemSection>
               </div>
             )}
           </div>

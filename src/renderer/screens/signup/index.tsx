@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { ChevronDown, ArrowRight } from "lucide-react";
 import Header from "renderer/components/header/header";
 
-export default function SignupPage() {
+export default function SignupScreen() {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 

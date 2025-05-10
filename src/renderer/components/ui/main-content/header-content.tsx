@@ -34,7 +34,7 @@ export function HeaderContent({
   setIsSettingsDrawerOpen: (isOpen: boolean) => void;
 }) {
   return (
-    <div className="flex items-center justify-between p-2 md:p-3 border-b border-[#000000] bg-[#141414]">
+    <div className="flex items-center border-l-2 justify-between p-2 md:p-3 border-b border-[#000000] bg-[#141414]">
       <div className="flex items-center">
         <button
           onClick={toggleSidebar}

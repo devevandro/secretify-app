@@ -7,11 +7,9 @@ import Header from "renderer/components/header/header";
 import { GridContent } from "renderer/components/ui/main-content/grid-content";
 import { HeaderContent } from "renderer/components/ui/main-content/header-content";
 import { ListContentResizable } from "renderer/components/ui/main-content/list-content-resizable";
-import { Toaster } from "sonner";
 
 import CreateModal from "../../components/create-modal";
-import PasswordCard from "../../components/password-card";
-import PasswordCardSkeleton from "../../components/password-card-skeleton";
+import ItemCard from "../../components/item-card";
 import SettingsDrawer from "../../components/settings-drawer";
 import Sidebar from "../../components/sidebar/sidebar";
 import SortModal from "../../components/sort-modal";
@@ -152,7 +150,7 @@ export default function Dashboard() {
       return (
         <GridViewContent>
           {passwords.map((password) => (
-            <PasswordCard
+            <ItemCard
               key={password.id}
               id={password.id}
               icon={password.icon}
@@ -171,7 +169,7 @@ export default function Dashboard() {
     return (
       <ListViewContent>
         {passwords.map((password) => (
-          <PasswordCard
+          <ItemCard
             key={password.id}
             id={password.id}
             icon={password.icon}

@@ -28,7 +28,7 @@ interface TrashItem {
   status?: string;
 }
 
-export default function TrashPage() {
+export default function TrashScreen() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
