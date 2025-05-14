@@ -33,31 +33,21 @@ export function SidebarNavigation({
           </div>
         )}
 
-        <div
-          className={`${
-            isOpen ? "px-2 md:px-3" : "px-0 flex justify-center"
-          } mb-1 md:mb-2`}
-        >
-          <Link
-            to="/dashboard"
-            className={`${
-              isOpen ? "w-full" : "w-8 h-8 md:w-10 md:h-10"
-            } flex items-center ${
-              isOpen ? "p-1.5 md:p-2" : "p-0 justify-center"
-            } rounded-md text-xs md:text-sm ${
-              currentPath === "/dashboard"
-                ? "text-[#58BFF5] bg-[#2a4b5c]"
-                : "text-[#626262]"
-            }`}
-          >
+        <SidebarItem
+          icon={
             <ImgIcon
               src={
-                currentPath === "/dashboard" ? "key-blue.svg" : "key-gray.svg"
+                currentPath === "/dashboard"
+                  ? "history-blue.svg"
+                  : "history-gray.svg"
               }
             />
-            {isOpen && <span className="ml-2 md:ml-3">Início</span>}
-          </Link>
-        </div>
+          }
+          label="Recentes"
+          isOpen={isOpen}
+          href="/dashboard"
+          isActive={currentPath === "/dashboard"}
+        />
 
         <SidebarItem
           icon={
@@ -69,14 +59,20 @@ export function SidebarNavigation({
               }
             />
           }
-          label="Favoritos"
+          label="Meus Favoritos"
           isOpen={isOpen}
           href="/favorites"
           isActive={currentPath === "/favorites"}
         />
         <SidebarItem
-          icon={<ImgIcon src="history-gray.svg" />}
-          label="Recentes"
+          icon={
+            <ImgIcon
+              src={
+                currentPath === "/favorites" ? "key-blue.svg" : "key-gray.svg"
+              }
+            />
+          }
+          label="Senhas de Acessos"
           isOpen={isOpen}
         />
         <SidebarItem
