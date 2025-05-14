@@ -76,7 +76,7 @@ export default function GridItemCard({
           className="text-gray-400 hover:text-gray-200"
           onClick={handleMoreClick}
         >
-          <MoreVertical className="h-4 w-4 md:h-5 md:w-5" />
+          <MoreVertical className="h-4 w-4 md:h-5 md:w-5 cursor-pointer" />
         </button>
       </div>
     </>

@@ -151,7 +151,7 @@ export default function ItemCard({
 
   return (
     <div
-      className="overflow-hidden custom-scrollbar group relative cursor-pointer"
+      className="overflow-hidden custom-scrollbar group relative"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
