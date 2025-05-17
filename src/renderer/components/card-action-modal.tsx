@@ -90,7 +90,7 @@ export default function CardActionModal({
         />
 
         <CardActionModalButton
-          label={isFavorite ? "Remover favorito" : "Favoritar"}
+          label={isFavorite ? "Remover" : "Favoritar"}
           children={
             <Star
               className={`h-3.5 w-3.5 md:h-4 md:w-4 mr-2 md:mr-3 ${
