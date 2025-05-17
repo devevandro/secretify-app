@@ -68,17 +68,21 @@ export function SidebarNavigation({
           icon={
             <ImgIcon
               src={
-                currentPath === "/favorites" ? "key-blue.svg" : "key-gray.svg"
+                currentPath === "/passwords" ? "key-blue.svg" : "key-gray.svg"
               }
             />
           }
           label="Senhas de Acessos"
           isOpen={isOpen}
+          href="/passwords"
+          isActive={currentPath === "/passwords"}
         />
         <SidebarItem
           icon={<ImgIcon src="link-gray.svg" />}
           label="Sites Favoritos"
           isOpen={isOpen}
+          href="/favorites-sites"
+          isActive={currentPath === "/favorites-sites"}
         />
         <SidebarItem
           icon={<ImgIcon src="share-gray.svg" />}
@@ -100,7 +104,7 @@ export function SidebarNavigation({
           className={`${
             isOpen ? "mx-3" : "mx-auto w-6 md:w-8"
           } my-2 md:my-3 border-t border-[#292929]`}
-        ></div>
+        />
       </div>
 
       <SidebarFooter isOpen={isOpen} />
