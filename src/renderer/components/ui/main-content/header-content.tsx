@@ -47,7 +47,7 @@ export function HeaderContent({
             className="w-6 h-6 cursor-pointer"
           />
         </button>
-        <HorizontalDivider />
+        <HorizontalDivider borderColor="border-[#626262]" height="h-6" />
         <span className="text-[#626262] text-sm md:text-base">
           Menu /&nbsp;
         </span>
