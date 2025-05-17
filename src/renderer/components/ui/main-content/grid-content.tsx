@@ -13,7 +13,7 @@ export function GridContent({
   viewType: "type" | "all";
   filteredDatas: any[];
   groupedDatas: any;
-  renderDatas: (data: any[]) => JSX.Element;
+  renderDatas: (data: any[]) => any;
 }) {
   return (
     <div className="h-full overflow-y-auto custom-scrollbar p-2 md:p-4 3xl:p-6">
