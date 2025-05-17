@@ -1,6 +1,9 @@
 import { contextBridge, ipcRenderer } from "electron";
 import { IPC } from "shared/constants/ipc";
-import { FetchAllPasswordsReponse } from "shared/types/ipc";
+import {
+  FetchAllFavoritesSitesReponse,
+  FetchAllPasswordsReponse,
+} from "shared/types/ipc";
 
 declare global {
   interface Window {
@@ -11,6 +14,10 @@ declare global {
 const dataApi = {
   fetchPasswords: (): Promise<FetchAllPasswordsReponse> => {
     return ipcRenderer.invoke(IPC.PASSWORDS.FETCH_ALL);
+  },
+
+  fetchFavoriteSites: (): Promise<FetchAllFavoritesSitesReponse> => {
+    return ipcRenderer.invoke(IPC.FAVORITES_SITES.FETCH_ALL);
   },
 };
 
