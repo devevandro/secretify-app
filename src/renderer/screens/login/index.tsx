@@ -34,15 +34,13 @@ export default function LoginScreen() {
             </div>
           </div>
           <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
-            <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">
-              Bem Vindo ao <span className="text-[#3b9bff]">Secretfy</span>, seu
-              cofre digital sempre seguro.
+            <h1 className="text-2xl text-center md:text-3xl font-bold text-white mb-2">
+              Bom ver você novamente!
             </h1>
 
-            <p className="text-[#8F8F8F] text-justify mb-8 text-sm md:text-base">
-              Secretfy desktop é uma plataforma de segurança digital, que
-              oferece uma maneira simples e eficaz de proteger, e armazenar suas
-              senhas.
+            <p className="text-[#8F8F8F] text-left mb-6 text-sm md:text-base">
+              Que bom que já está de volta! Continue aproveitando o seu
+              Secretify.
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -74,7 +72,7 @@ export default function LoginScreen() {
                   </div>
                 ) : (
                   <>
-                    <span>CONTINUAR COM ENDEREÇO DE E-MAIL</span>
+                    <span>ACESSAR</span>
                   </>
                 )}
               </button>
