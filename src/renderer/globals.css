@@ -154,4 +154,8 @@
     background-color: #141414;
   }
 
+  .custom-font-family {
+    font-family: 'Kanit', sans-serif;
+  }
+
 }
