@@ -36,6 +36,20 @@ export interface FetchAllPasswordsReponse {
   data: Password[];
 }
 
+export type CreatePasswordRequest = {
+  userId: string;
+  type: string;
+  valueToEncoded: {
+    name: string;
+    url: string;
+    password: string;
+    descritpion?: string;
+  };
+  favicon: string;
+};
+
+export type CreatePasswordResponse = boolean;
+
 export interface FetchAllFavoritesReponse {
   data: Favorites[];
 }

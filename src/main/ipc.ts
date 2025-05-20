@@ -2,12 +2,17 @@ import { ipcMain } from "electron";
 
 import { IPC } from "../shared/constants/ipc";
 import {
+  CreatePasswordRequest,
+  CreatePasswordResponse,
   FetchAllFavoritesReponse,
   FetchAllPasswordsReponse,
 } from "shared/types/ipc";
 import { DataBaseApi } from "renderer/api/data/base-api";
+import { CriptoBaseApi } from "renderer/api/cripto/base-api";
+import { ENVIRONMENTS } from "shared/constants/constants";
 
 const baseApi = new DataBaseApi();
+const criptoBaseApi = new CriptoBaseApi();
 
 interface Password {
   id: string;
@@ -30,6 +35,32 @@ ipcMain.handle(
     return {
       data: reponse,
     };
+  }
+);
+
+ipcMain.handle(
+  IPC.PASSWORDS.CREATE,
+  async (
+    _,
+    createPassword: CreatePasswordRequest
+  ): Promise<CreatePasswordResponse> => {
+    const { valueToEncoded } = createPassword;
+    const { CRIPTO_API_URL, SECRETIFY_API } = ENVIRONMENTS;
+    const { data } = await criptoBaseApi.criptoApi.post(
+      `${CRIPTO_API_URL}/api/kms/keys/encrypt`,
+      valueToEncoded
+    );
+    const body = {
+      ...createPassword,
+      type: "passwords",
+      plaintext: data,
+    };
+    const response = await baseApi.dataApi.post(
+      `${SECRETIFY_API}/api/passwords`,
+      body
+    );
+
+    return !!response;
   }
 );
 

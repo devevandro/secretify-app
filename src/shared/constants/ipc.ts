@@ -1,6 +1,7 @@
 export const IPC = {
   PASSWORDS: {
     FETCH_ALL: "passwords:fetch_all",
+    CREATE: "passwords:create",
   },
 
   FAVORITES_SITES: {
