@@ -10,6 +10,7 @@ import TrashScreen from "./screens/trash";
 import SignupScreen from "./screens/signup";
 import PasswordsScreen from "./screens/passwords";
 import FavoritesSitesScreen from "./screens/favorites-sites";
+import SetupScreen from "./screens/setup-2fa";
 
 export function AppRoutes() {
   return (
@@ -22,7 +23,7 @@ export function AppRoutes() {
           <Route path="/favorites" element={<FavoritesScreen />} />
           <Route path="/favorites-sites" element={<FavoritesSitesScreen />} />
           <Route path="/trash" element={<TrashScreen />} />
-          <Route path="/signup" element={<SignupScreen />} />
+          <Route path="/signup" element={<SetupScreen />} />
           <Route path="/passwords" element={<PasswordsScreen />} />
         </>
       }
