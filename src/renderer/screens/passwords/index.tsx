@@ -22,6 +22,7 @@ import Sidebar from "../../components/sidebar/sidebar";
 import SortModal from "../../components/sort-modal";
 import { usePlatform } from "../../hooks/use-platform";
 import { generateMockPasswords } from "../../lib/mock-data";
+import { setIconUrl } from "shared/utils/utils";
 
 export default function PasswordsScreen() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -147,7 +148,7 @@ export default function PasswordsScreen() {
           {data?.data.map((password) => (
             <ItemCard
               type={password.type}
-              iconUrl="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg"
+              iconUrl={setIconUrl(password.plaintext.url || "")}
               key={password.id}
               id={password.id}
               name={password.plaintext.name}
@@ -166,7 +167,7 @@ export default function PasswordsScreen() {
             type={password.type}
             key={password.id}
             id={password.id}
-            iconUrl="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg"
+            iconUrl={setIconUrl(password.plaintext.url || "")}
             name={password.plaintext.name}
             description={password.plaintext.description}
             listView={true}
