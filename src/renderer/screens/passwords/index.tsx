@@ -22,11 +22,11 @@ import Sidebar from "../../components/sidebar/sidebar";
 import SortModal from "../../components/sort-modal";
 import { usePlatform } from "../../hooks/use-platform";
 import { generateMockPasswords } from "../../lib/mock-data";
+import { setIconUrl } from "shared/utils/utils";
 
-export default function Dashboard() {
+export default function PasswordsScreen() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isGridView, setIsGridView] = useState(true);
-  const [passwords, setPasswords] = useState<any[]>([]);
   const [filteredPasswords, setFilteredPasswords] = useState<any[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [isSortModalOpen, setIsSortModalOpen] = useState(false);
@@ -37,7 +37,7 @@ export default function Dashboard() {
     { top: number; left: number; right: number } | undefined
   >();
   const [selectedPassword, setSelectedPassword] = useState<any | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
 
   const createButtonRef = useRef<HTMLButtonElement>(null);
   const sortButtonRef = useRef<HTMLButtonElement>(null);
@@ -59,33 +59,27 @@ export default function Dashboard() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  useEffect(() => {
-    setIsLoading(true);
+  const { data, isFetching } = useQuery({
+    queryKey: ["passwords"],
+    queryFn: async () => await window.dataApi.fetchPasswords(),
+  });
 
-    setTimeout(() => {
-      const initialPasswords = generateMockPasswords(15);
-      setPasswords(initialPasswords);
-      setFilteredPasswords(initialPasswords);
-      setIsLoading(false);
-    }, 1500);
-  }, []);
+  // useEffect(() => {
+  //   let result = [...passwords];
 
-  useEffect(() => {
-    let result = [...passwords];
+  //   if (searchTerm) {
+  //     result = result.filter((password) =>
+  //       password.name.toLowerCase().includes(searchTerm.toLowerCase())
+  //     );
+  //   }
 
-    if (searchTerm) {
-      result = result.filter((password) =>
-        password.name.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    }
-
-    setFilteredPasswords(result);
-  }, [searchTerm, passwords]);
+  //   setFilteredPasswords(result);
+  // }, [searchTerm, passwords]);
 
   const handleDeletePassword = (id: string) => {
-    setPasswords((prevPasswords) =>
-      prevPasswords.filter((password) => password.id !== id)
-    );
+    // setPasswords((prevPasswords) =>
+    //   prevPasswords.filter((password) => password.id !== id)
+    // );
   };
 
   const groupedPasswords = {
@@ -133,18 +127,12 @@ export default function Dashboard() {
     setSelectedPassword(password);
   };
 
-  const { data } = useQuery({
-    queryKey: ["passwords"],
-    queryFn: async () => await window.dataApi.fetchPasswords(),
-  });
-  console.log(data, "cacete");
-
   const renderPasswords = (passwords: any[]) => {
-    if (isLoading) {
+    if (isFetching) {
       return <SkeletonContent isGridView={isGridView} />;
     }
 
-    if (passwords.length === 0) {
+    if (passwords.length === 0 && isFetching) {
       return (
         <NoItem
           title="Nenhum Item Criado!"
@@ -157,16 +145,14 @@ export default function Dashboard() {
     if (isGridView) {
       return (
         <GridViewContent>
-          {passwords.map((password) => (
+          {data?.data.map((password) => (
             <ItemCard
+              type={password.type}
+              iconUrl={setIconUrl(password.plaintext.url || "")}
               key={password.id}
               id={password.id}
-              icon={password.icon}
-              iconUrl={password.iconUrl}
-              name={password.name}
-              user={password.user}
-              status={password.status}
-              color={password.color}
+              name={password.plaintext.name}
+              description={password.plaintext.description}
               onDelete={handleDeletePassword}
             />
           ))}
@@ -176,16 +162,14 @@ export default function Dashboard() {
 
     return (
       <ListViewContent>
-        {passwords.map((password) => (
+        {data?.data.map((password) => (
           <ItemCard
+            type={password.type}
             key={password.id}
             id={password.id}
-            icon={password.icon}
-            iconUrl={password.iconUrl}
-            name={password.name}
-            user={password.user}
-            status={password.status}
-            color={password.color}
+            iconUrl={setIconUrl(password.plaintext.url || "")}
+            name={password.plaintext.name}
+            description={password.plaintext.description}
             listView={true}
             onDelete={handleDeletePassword}
             onClick={() => handleCardClick(password)}
@@ -233,7 +217,7 @@ export default function Dashboard() {
             <ListContentResizable
               filteredDatas={filteredPasswords}
               groupedDatas={groupedPasswords}
-              isLoading={isLoading}
+              isLoading={isFetching}
               viewType={viewType}
               selectedData={selectedPassword}
               renderDatas={renderPasswords}

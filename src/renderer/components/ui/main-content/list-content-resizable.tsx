@@ -28,15 +28,12 @@ export function ListContentResizable({
 }) {
   return (
     <ResizablePanelGroup direction="horizontal" className="h-full">
-      {/* Left panel - Password list */}
       <ResizablePanel defaultSize={50} minSize={30} className="h-full">
         <div className="h-full overflow-y-auto custom-scrollbar">
           <div className="p-2 md:p-4 3xl:p-6">
             {viewType === "all" ? (
-              // Show all passwords
               <div>{renderDatas(filteredDatas)}</div>
             ) : (
-              // Show passwords grouped by type
               <div>
                 <ItemSection
                   title="Senhas Pessoais"
@@ -72,10 +69,8 @@ export function ListContentResizable({
         </div>
       </ResizablePanel>
 
-      {/* Resizable handle */}
-      <ResizableHandle withHandle className="bg-gray-800" />
+      <ResizableHandle withHandle className="bg-[#292929] w-0.5" />
 
-      {/* Right panel - Password details */}
       <ResizablePanel
         defaultSize={50}
         minSize={30}

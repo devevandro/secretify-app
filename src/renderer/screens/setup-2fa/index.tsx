@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { ChevronDown, ArrowRight } from "lucide-react";
 import Header from "renderer/components/header/header";
 
-export default function SignupScreen() {
+export default function SetupScreen() {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -102,7 +102,7 @@ export default function SignupScreen() {
           </div>
           <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
             <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">
-              Crie sua conta no Secretfy, seu cofre digital sempre seguro.
+              Crie sua conta no Secretfy , seu cofre digital sempre seguro.
             </h1>
 
             <p className="text-gray-400 mb-8 text-sm md:text-base">

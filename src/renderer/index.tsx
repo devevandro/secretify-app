@@ -1,12 +1,13 @@
-import ReactDom from 'react-dom/client'
-import React from 'react'
+import "./globals.css";
 
-import { AppRoutes } from './routes'
+import React from "react";
 
-import './globals.css'
+import ReactDom from "react-dom/client";
 
-ReactDom.createRoot(document.querySelector('app') as HTMLElement).render(
+import { App } from "./App";
+
+ReactDom.createRoot(document.querySelector("app") as HTMLElement).render(
   <React.StrictMode>
-    <AppRoutes />
+    <App />
   </React.StrictMode>
-)
+);
