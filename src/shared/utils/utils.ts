@@ -1,8 +1,9 @@
-import { author as _author, name } from '~/package.json'
+import { icons } from "shared/constants/icons";
+import { author as _author, name } from "~/package.json";
 
-const author = _author.name ?? _author
-const authorInKebabCase = author.replace(/\s+/g, '-')
-const appId = `com.${authorInKebabCase}.${name}`.toLowerCase()
+const author = _author.name ?? _author;
+const authorInKebabCase = author.replace(/\s+/g, "-");
+const appId = `com.${authorInKebabCase}.${name}`.toLowerCase();
 
 /**
  * @param {string} id
@@ -13,5 +14,14 @@ const appId = `com.${authorInKebabCase}.${name}`.toLowerCase()
  * // => 'com.example.app'
  */
 export function makeAppId(id: string = appId): string {
-  return id
+  return id;
 }
+
+export const setIconUrl = (url: string): string | undefined => {
+  const iconUrl = icons.find((icon) => {
+    if (url.toUpperCase().includes(icon.name.toUpperCase()))
+      return icon.iconUrl;
+  });
+
+  return iconUrl?.iconUrl;
+};
