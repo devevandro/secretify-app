@@ -11,33 +11,29 @@ import GridItemCard from "./ui/item-card/grid-item-card";
 
 interface ItemCardProps {
   id: string;
-  icon: string;
+  type: string;
   iconUrl?: string;
   name: string;
-  user?: string;
-  status?: string;
-  color?: string;
+  url?: string;
+  description: string;
   listView?: boolean;
-  initialFavorite?: boolean;
   onDelete: (id: string) => void;
   onClick?: () => void;
 }
 
 export default function ItemCard({
   id,
-  icon,
+  type,
   iconUrl,
   name,
-  user,
-  status,
-  color = "bg-gray-600",
-  listView = false,
-  initialFavorite = false,
+  url,
+  description,
+  listView,
   onDelete,
   onClick,
 }: ItemCardProps) {
   const [isHovered, setIsHovered] = useState(false);
-  const [isFavorite, setIsFavorite] = useState(initialFavorite);
+  const [isFavorite, setIsFavorite] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
   const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
@@ -127,7 +123,7 @@ export default function ItemCard({
   if (listView) {
     return (
       <div
-        className="overflow-hidden custom-scrollbar group relative cursor-pointer flex bg-[#1e1e1e] hover:bg-[#252525] transition-colors duration-200 rounded-[10px]"
+        className="overflow-hidden custom-scrollbar group relative cursor-pointer flex bg-[#1e1e1e] hover:bg-[#252525] border-b-2 border-[#292929] transition-colors duration-200"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onClick={(e) => {
@@ -137,12 +133,11 @@ export default function ItemCard({
         }}
       >
         <ListItemCard
-          color={color}
           name={name}
           isFavorite={isFavorite}
           isHovered={isHovered}
           iconUrl={iconUrl}
-          user={user}
+          description={description}
           handleToggleFavorite={handleToggleFavorite}
         />
       </div>
@@ -151,17 +146,16 @@ export default function ItemCard({
 
   return (
     <div
-      className="overflow-hidden custom-scrollbar group relative cursor-pointer"
+      className="overflow-hidden custom-scrollbar group relative"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <GridItemCard
-        color={color}
         name={name}
         isFavorite={isFavorite}
         isHovered={isHovered}
         iconUrl={iconUrl}
-        user={user}
+        description={description}
         moreButtonRef={moreButtonRef}
         handleMoreClick={handleMoreClick}
         handleToggleFavorite={handleToggleFavorite}

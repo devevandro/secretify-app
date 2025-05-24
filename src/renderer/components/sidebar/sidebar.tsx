@@ -10,13 +10,9 @@ import { SidebarProfile } from "../ui/sidebar/sidebar-profile";
 interface SidebarProps {
   isOpen: boolean;
   onToggle: () => void;
-  activePage?: string;
 }
 
-export default function Sidebar({
-  isOpen,
-  activePage = "dashboard",
-}: SidebarProps) {
+export default function Sidebar({ isOpen }: SidebarProps) {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isProfileVisible, setIsProfileVisible] = useState(true);
   const profileMenuRef = useRef<HTMLDivElement>(null);

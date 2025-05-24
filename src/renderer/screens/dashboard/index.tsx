@@ -4,9 +4,14 @@ import type React from "react";
 import { useEffect, useRef, useState } from "react";
 
 import Header from "renderer/components/header/header";
-import { GridContent } from "renderer/components/ui/main-content/grid-content";
+import { NoItem } from "renderer/components/no-item";
+import { GridViewContent } from "renderer/components/ui/main-content/grid-view-content";
 import { HeaderContent } from "renderer/components/ui/main-content/header-content";
 import { ListContentResizable } from "renderer/components/ui/main-content/list-content-resizable";
+import { ListViewContent } from "renderer/components/ui/main-content/list-view-content";
+import { ToasterContent } from "renderer/components/ui/main-content/toaster-content";
+
+import { useQuery } from "@tanstack/react-query";
 
 import CreateModal from "../../components/create-modal";
 import ItemCard from "../../components/item-card";
@@ -15,11 +20,7 @@ import Sidebar from "../../components/sidebar/sidebar";
 import SortModal from "../../components/sort-modal";
 import { usePlatform } from "../../hooks/use-platform";
 import { generateMockPasswords } from "../../lib/mock-data";
-import { NoItem } from "renderer/components/no-item";
-import { GridViewContent } from "renderer/components/ui/main-content/grid-view-content";
-import { ListViewContent } from "renderer/components/ui/main-content/list-view-content";
-import { SkeletonContent } from "renderer/components/ui/main-content/skeleton-content";
-import { ToasterContent } from "renderer/components/ui/main-content/toaster-content";
+import { GridContent } from "renderer/views/gridview/components/grid-content";
 
 export default function Dashboard() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -131,9 +132,14 @@ export default function Dashboard() {
     setSelectedPassword(password);
   };
 
+  const { data } = useQuery({
+    queryKey: ["passwords"],
+    queryFn: async () => await window.dataApi.fetchPasswords(),
+  });
+
   const renderPasswords = (passwords: any[]) => {
     if (isLoading) {
-      return <SkeletonContent isGridView={isGridView} />;
+      return <></>;
     }
 
     if (passwords.length === 0) {
@@ -210,7 +216,7 @@ export default function Dashboard() {
           handleSearch={handleSearch}
           setIsGridView={setIsGridView}
           setIsSettingsDrawerOpen={setIsSettingsDrawerOpen}
-          pageName="Início"
+          pageName="Recentes"
         />
 
         <div className="flex-1 overflow-hidden custom-scrollbar">

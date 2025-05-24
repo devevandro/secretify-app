@@ -24,8 +24,10 @@ export function SidebarProfile({
     <>
       {isOpen && isProfileVisible && (
         <div className="relative">
-          <div className="relative p-3 md:p-4 flex items-center">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-900 to-blue-700 opacity-30" />
+          <div className="relative p-3 md:p-6 flex items-center">
+            <div className="absolute inset-0 z-0">
+              <div className="absolute inset-0 bg-[url('/img/profile-bg.png')] bg-no-repeat bg-cover opacity-50"></div>
+            </div>
             <div className="relative z-10 flex items-center w-full">
               <div className="relative w-8 h-8 md:w-12 md:h-12 mr-2 md:mr-3">
                 <img
@@ -45,7 +47,7 @@ export function SidebarProfile({
                 </p>
               </div>
               <button
-                className="ml-auto text-gray-400"
+                className="ml-auto text-gray-400 cursor-pointer"
                 onClick={() => setIsProfileOpen(!isProfileOpen)}
               >
                 <ChevronDown

@@ -87,7 +87,7 @@ export default function VerifyScreen() {
     if (verificationCode === "111111") {
       setTimeout(() => {
         setTimeout(() => {
-          navigate("/dashboard");
+          navigate("/passwords");
         }, 3000);
       }, 1000);
     } else {

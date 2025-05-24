@@ -142,16 +142,20 @@
   }
 
   .custom-scrollbar::-webkit-scrollbar {
-    width: 8px;
+    width: 2px;
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    background-color: #262626;
+    background-color: #292929;
     border-radius: 9999px;
   }
 
   .custom-scrollbar::-webkit-scrollbar-track {
     background-color: #141414;
+  }
+
+  .custom-font-family {
+    font-family: 'Kanit', sans-serif;
   }
 
 }
