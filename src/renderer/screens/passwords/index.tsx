@@ -3,26 +3,11 @@
 import type React from "react";
 import { useEffect, useRef, useState } from "react";
 
-import Header from "renderer/components/header/header";
-import { NoItem } from "renderer/components/no-item";
-import { GridContent } from "renderer/components/ui/main-content/grid-content";
-import { GridViewContent } from "renderer/components/ui/main-content/grid-view-content";
-import { HeaderContent } from "renderer/components/ui/main-content/header-content";
-import { ListContentResizable } from "renderer/components/ui/main-content/list-content-resizable";
-import { ListViewContent } from "renderer/components/ui/main-content/list-view-content";
-import { SkeletonContent } from "renderer/components/ui/main-content/skeleton-content";
-import { ToasterContent } from "renderer/components/ui/main-content/toaster-content";
-
 import { useQuery } from "@tanstack/react-query";
 
-import CreateModal from "../../components/create-modal";
-import ItemCard from "../../components/item-card";
-import SettingsDrawer from "../../components/settings-drawer";
-import Sidebar from "../../components/sidebar/sidebar";
-import SortModal from "../../components/sort-modal";
 import { usePlatform } from "../../hooks/use-platform";
-import { generateMockPasswords } from "../../lib/mock-data";
-import { setIconUrl } from "shared/utils/utils";
+import GridView from "renderer/views/gridview";
+import ListView from "renderer/views/listview";
 
 export default function PasswordsScreen() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -37,7 +22,6 @@ export default function PasswordsScreen() {
     { top: number; left: number; right: number } | undefined
   >();
   const [selectedPassword, setSelectedPassword] = useState<any | null>(null);
-  // const [isLoading, setIsLoading] = useState(true);
 
   const createButtonRef = useRef<HTMLButtonElement>(null);
   const sortButtonRef = useRef<HTMLButtonElement>(null);
@@ -59,17 +43,12 @@ export default function PasswordsScreen() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const { data, isFetching } = useQuery({
-    queryKey: ["passwords"],
-    queryFn: async () => await window.dataApi.fetchPasswords(),
-  });
-
   // useEffect(() => {
   //   let result = [...passwords];
 
   //   if (searchTerm) {
   //     result = result.filter((password) =>
-  //       password.name.toLowerCase().includes(searchTerm.toLowerCase())
+  //       items.name.toLowerCase().includes(searchTerm.toLowerCase())
   //     );
   //   }
 
@@ -78,7 +57,7 @@ export default function PasswordsScreen() {
 
   const handleDeletePassword = (id: string) => {
     // setPasswords((prevPasswords) =>
-    //   prevPasswords.filter((password) => password.id !== id)
+    //   prevPasswords.filter((password) => items.id !== id)
     // );
   };
 
@@ -127,127 +106,76 @@ export default function PasswordsScreen() {
     setSelectedPassword(password);
   };
 
-  const renderPasswords = (passwords: any[]) => {
-    if (isFetching) {
-      return <SkeletonContent isGridView={isGridView} />;
-    }
+  const { data, isFetching } = useQuery({
+    queryKey: ["passwords"],
+    queryFn: async () => await window.dataApi.fetchPasswords(),
+  });
 
-    if (passwords.length === 0 && isFetching) {
-      return (
-        <NoItem
-          title="Nenhum Item Criado!"
-          subtitle="Bora começar a criar um item?"
-          isGridView={true}
-        />
-      );
-    }
-
-    if (isGridView) {
-      return (
-        <GridViewContent>
-          {data?.data.map((password) => (
-            <ItemCard
-              type={password.type}
-              iconUrl={setIconUrl(password.plaintext.url || "")}
-              key={password.id}
-              id={password.id}
-              name={password.plaintext.name}
-              description={password.plaintext.description}
-              onDelete={handleDeletePassword}
-            />
-          ))}
-        </GridViewContent>
-      );
-    }
-
+  if (isGridView) {
     return (
-      <ListViewContent>
-        {data?.data.map((password) => (
-          <ItemCard
-            type={password.type}
-            key={password.id}
-            id={password.id}
-            iconUrl={setIconUrl(password.plaintext.url || "")}
-            name={password.plaintext.name}
-            description={password.plaintext.description}
-            listView={true}
-            onDelete={handleDeletePassword}
-            onClick={() => handleCardClick(password)}
-          />
-        ))}
-      </ListViewContent>
+      <GridView
+        isFetching={isFetching}
+        items={data?.data}
+        createButtonRef={createButtonRef}
+        filteredItems={filteredPasswords}
+        groupedPasswords={groupedPasswords}
+        handleCardClick={handleCardClick}
+        handleDeletePassword={handleDeletePassword}
+        handleOpenCreateModal={handleOpenCreateModal}
+        handleOpenSortModal={handleOpenSortModal}
+        handleSearch={handleSearch}
+        isCreateModalOpen={isCreateModalOpen}
+        isDesktop={isDesktop}
+        isGridView={isGridView}
+        isSettingsDrawerOpen={isSettingsDrawerOpen}
+        isSidebarOpen={isSidebarOpen}
+        isSortModalOpen={isSortModalOpen}
+        modalPosition={modalPosition}
+        searchTerm={searchTerm}
+        selectedPassword={selectedPassword}
+        setIsCreateModalOpen={setIsCreateModalOpen}
+        setIsGridView={setIsGridView}
+        setIsSettingsDrawerOpen={setIsSettingsDrawerOpen}
+        setIsSortModalOpen={setIsSortModalOpen}
+        setViewType={setViewType}
+        sortButtonRef={sortButtonRef}
+        toggleSidebar={toggleSidebar}
+        viewType={viewType}
+        pageName="Senhas de Acesso"
+      />
     );
-  };
+  }
 
   return (
-    <div className="flex h-screen bg-[#000000] text-white">
-      <Sidebar
-        isOpen={isSidebarOpen}
-        onToggle={toggleSidebar}
-        activePage="dashboard"
-      />
-
-      <div className="flex-1 flex flex-col overflow-hidden custom-scrollbar">
-        <Header />
-        <HeaderContent
-          createButtonRef={createButtonRef}
-          handleOpenCreateModal={handleOpenCreateModal}
-          handleOpenSortModal={handleOpenSortModal}
-          sortButtonRef={sortButtonRef}
-          searchTerm={searchTerm}
-          isSidebarOpen={isSidebarOpen}
-          isGridView={isGridView}
-          viewType={viewType}
-          toggleSidebar={toggleSidebar}
-          handleSearch={handleSearch}
-          setIsGridView={setIsGridView}
-          setIsSettingsDrawerOpen={setIsSettingsDrawerOpen}
-          pageName="Recentes"
-        />
-
-        <div className="flex-1 overflow-hidden custom-scrollbar">
-          {isGridView ? (
-            <GridContent
-              filteredDatas={filteredPasswords}
-              groupedDatas={groupedPasswords}
-              renderDatas={renderPasswords}
-              viewType={viewType}
-            />
-          ) : (
-            <ListContentResizable
-              filteredDatas={filteredPasswords}
-              groupedDatas={groupedPasswords}
-              isLoading={isFetching}
-              viewType={viewType}
-              selectedData={selectedPassword}
-              renderDatas={renderPasswords}
-            />
-          )}
-        </div>
-      </div>
-
-      <SortModal
-        isOpen={isSortModalOpen}
-        onClose={() => setIsSortModalOpen(false)}
-        onViewChange={setViewType}
-        currentView={viewType}
-        position={isSortModalOpen ? modalPosition : undefined}
-        isDesktop={isDesktop}
-      />
-
-      <CreateModal
-        isOpen={isCreateModalOpen}
-        onClose={() => setIsCreateModalOpen(false)}
-        position={isCreateModalOpen ? modalPosition : undefined}
-        isDesktop={isDesktop}
-      />
-
-      <SettingsDrawer
-        isOpen={isSettingsDrawerOpen}
-        onClose={() => setIsSettingsDrawerOpen(false)}
-      />
-
-      <ToasterContent position="top-right" theme="dark" />
-    </div>
+    <ListView
+      isFetching={isFetching}
+      items={data?.data}
+      createButtonRef={createButtonRef}
+      filteredItems={filteredPasswords}
+      groupedPasswords={groupedPasswords}
+      handleCardClick={handleCardClick}
+      handleDeletePassword={handleDeletePassword}
+      handleOpenCreateModal={handleOpenCreateModal}
+      handleOpenSortModal={handleOpenSortModal}
+      handleSearch={handleSearch}
+      isCreateModalOpen={isCreateModalOpen}
+      isDesktop={isDesktop}
+      isGridView={isGridView}
+      isSettingsDrawerOpen={isSettingsDrawerOpen}
+      isSidebarOpen={isSidebarOpen}
+      isSortModalOpen={isSortModalOpen}
+      modalPosition={modalPosition}
+      searchTerm={searchTerm}
+      selectedPassword={selectedPassword}
+      setIsCreateModalOpen={setIsCreateModalOpen}
+      setIsGridView={setIsGridView}
+      setIsSettingsDrawerOpen={setIsSettingsDrawerOpen}
+      setIsSortModalOpen={setIsSortModalOpen}
+      setViewType={setViewType}
+      sortButtonRef={sortButtonRef}
+      toggleSidebar={toggleSidebar}
+      viewType={viewType}
+      pageName="Senhas de Acesso"
+    />
   );
 }
