@@ -113,36 +113,38 @@ export default function PasswordsScreen() {
 
   if (isGridView) {
     return (
-      <GridView
-        isFetching={isFetching}
-        items={data?.data}
-        createButtonRef={createButtonRef}
-        filteredItems={filteredPasswords}
-        groupedPasswords={groupedPasswords}
-        handleCardClick={handleCardClick}
-        handleDeletePassword={handleDeletePassword}
-        handleOpenCreateModal={handleOpenCreateModal}
-        handleOpenSortModal={handleOpenSortModal}
-        handleSearch={handleSearch}
-        isCreateModalOpen={isCreateModalOpen}
-        isDesktop={isDesktop}
-        isGridView={isGridView}
-        isSettingsDrawerOpen={isSettingsDrawerOpen}
-        isSidebarOpen={isSidebarOpen}
-        isSortModalOpen={isSortModalOpen}
-        modalPosition={modalPosition}
-        searchTerm={searchTerm}
-        selectedPassword={selectedPassword}
-        setIsCreateModalOpen={setIsCreateModalOpen}
-        setIsGridView={setIsGridView}
-        setIsSettingsDrawerOpen={setIsSettingsDrawerOpen}
-        setIsSortModalOpen={setIsSortModalOpen}
-        setViewType={setViewType}
-        sortButtonRef={sortButtonRef}
-        toggleSidebar={toggleSidebar}
-        viewType={viewType}
-        pageName="Senhas de Acesso"
-      />
+      <>
+        <GridView
+          isFetching={isFetching}
+          items={data?.data}
+          createButtonRef={createButtonRef}
+          filteredItems={filteredPasswords}
+          groupedItems={groupedPasswords}
+          handleCardClick={handleCardClick}
+          handleDeleteItem={handleDeletePassword}
+          handleOpenCreateModal={handleOpenCreateModal}
+          handleOpenSortModal={handleOpenSortModal}
+          handleSearch={handleSearch}
+          isCreateModalOpen={isCreateModalOpen}
+          isDesktop={isDesktop}
+          isGridView={isGridView}
+          isSettingsDrawerOpen={isSettingsDrawerOpen}
+          isSidebarOpen={isSidebarOpen}
+          isSortModalOpen={isSortModalOpen}
+          modalPosition={modalPosition}
+          searchTerm={searchTerm}
+          selectedPassword={selectedPassword}
+          setIsCreateModalOpen={setIsCreateModalOpen}
+          setIsGridView={setIsGridView}
+          setIsSettingsDrawerOpen={setIsSettingsDrawerOpen}
+          setIsSortModalOpen={setIsSortModalOpen}
+          setViewType={setViewType}
+          sortButtonRef={sortButtonRef}
+          toggleSidebar={toggleSidebar}
+          viewType={viewType}
+          pageName="Senhas de Acesso"
+        />
+      </>
     );
   }
 
@@ -152,9 +154,9 @@ export default function PasswordsScreen() {
       items={data?.data}
       createButtonRef={createButtonRef}
       filteredItems={filteredPasswords}
-      groupedPasswords={groupedPasswords}
+      groupedItems={groupedPasswords}
       handleCardClick={handleCardClick}
-      handleDeletePassword={handleDeletePassword}
+      handleDeleteItem={handleDeletePassword}
       handleOpenCreateModal={handleOpenCreateModal}
       handleOpenSortModal={handleOpenSortModal}
       handleSearch={handleSearch}

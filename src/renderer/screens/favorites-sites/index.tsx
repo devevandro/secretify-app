@@ -5,12 +5,10 @@ import { useEffect, useRef, useState } from "react";
 
 import Header from "renderer/components/header/header";
 import { NoItem } from "renderer/components/no-item";
-import { GridContent } from "renderer/components/ui/main-content/grid-content";
 import { GridViewContent } from "renderer/components/ui/main-content/grid-view-content";
 import { HeaderContent } from "renderer/components/ui/main-content/header-content";
 import { ListContentResizable } from "renderer/components/ui/main-content/list-content-resizable";
 import { ListViewContent } from "renderer/components/ui/main-content/list-view-content";
-import { SkeletonContent } from "renderer/components/ui/main-content/skeleton-content";
 import { ToasterContent } from "renderer/components/ui/main-content/toaster-content";
 
 import { useQuery } from "@tanstack/react-query";
@@ -22,6 +20,7 @@ import Sidebar from "../../components/sidebar/sidebar";
 import SortModal from "../../components/sort-modal";
 import { usePlatform } from "../../hooks/use-platform";
 import { generateMockPasswords } from "../../lib/mock-data";
+import { GridContent } from "renderer/views/gridview/components/grid-content";
 
 export default function FavoritesSitesScreen() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -128,7 +127,7 @@ export default function FavoritesSitesScreen() {
 
   const renderPasswords = (passwords: any[]) => {
     if (isFetching) {
-      return <SkeletonContent isGridView={isGridView} />;
+      return <></>;
     }
 
     if (passwords.length === 0 && isFetching) {
