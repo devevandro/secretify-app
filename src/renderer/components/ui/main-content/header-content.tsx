@@ -76,16 +76,14 @@ export function HeaderContent({
             </button>
           </div>
         </div>
-        {!isGridView && (
-          <button
-            ref={createButtonRef}
-            className="p-1 md:p-1.5 rounded-md hover:bg-gray-700 text-blue-400"
-            onClick={handleOpenCreateModal}
-            title="Criar novo"
-          >
-            <Plus className="h-4 w-4 md:h-5 md:w-5" />
-          </button>
-        )}
+        <button
+          ref={createButtonRef}
+          className="p-1 md:p-1.5 rounded-md hover:bg-gray-700 text-blue-400"
+          onClick={handleOpenCreateModal}
+          title="Criar novo"
+        >
+          <Plus className="h-4 w-4 md:h-5 md:w-5" />
+        </button>
         <button
           ref={sortButtonRef}
           className={`p-1 md:p-1.5 rounded-md hover:bg-gray-700 ${
@@ -101,9 +99,9 @@ export function HeaderContent({
           onClick={() => setIsGridView(!isGridView)}
         >
           {isGridView ? (
-            <List className="h-4 w-4 md:h-5 md:w-5 text-gray-400" />
-          ) : (
             <Grid className="h-4 w-4 md:h-5 md:w-5 text-gray-400" />
+          ) : (
+            <List className="h-4 w-4 md:h-5 md:w-5 text-gray-400" />
           )}
         </button>
         <button
