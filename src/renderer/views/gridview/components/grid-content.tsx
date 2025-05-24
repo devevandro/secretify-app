@@ -1,56 +1,28 @@
 "use client";
 
-import { Hash, Lock, Share2, Wrench } from "lucide-react";
 import { JSX } from "react";
-import ItemSection from "renderer/components/item-section";
+
+import { ViewItemSection } from "renderer/views/components/view-item-section";
 
 export function GridContent({
+  isGridView,
   viewType,
   filteredItems,
-  groupedDatas,
-  renderDatas,
+  groupedItems,
+  children,
 }: {
+  isGridView: boolean;
   viewType: "type" | "all";
   filteredItems: any[];
-  groupedDatas: any;
-  renderDatas: (data: any[]) => any;
+  groupedItems: any;
+  children: JSX.Element;
 }) {
   return (
-    <div className="h-full overflow-y-auto custom-scrollbar p-2 md:p-4 3xl:p-6">
-      {viewType === "all" ? (
-        <div>{renderDatas(filteredItems)}</div>
-      ) : (
-        <div>
-          <ItemSection
-            title="Senhas Pessoais"
-            icon={<Lock className="h-4 md:h-5 w-4 md:w-5" />}
-          >
-            {renderDatas(groupedDatas.personal)}
-          </ItemSection>
-
-          <ItemSection
-            title="Senhas Compartilhadas"
-            icon={<Share2 className="h-4 md:h-5 w-4 md:w-5" />}
-          >
-            {renderDatas(groupedDatas.shared)}
-          </ItemSection>
-
-          <ItemSection
-            title="Mídias Sociais"
-            icon={<Hash className="h-4 md:h-5 w-4 md:w-5" />}
-          >
-            {renderDatas(groupedDatas.social)}
-          </ItemSection>
-
-          <ItemSection
-            title="Ferramentas"
-            icon={<Wrench className="h-4 md:h-5 w-4 md:w-5" />}
-            isLast={true}
-          >
-            {renderDatas(groupedDatas.tools)}
-          </ItemSection>
-        </div>
-      )}
-    </div>
+    <ViewItemSection
+      title="Senhas"
+      children={children}
+      isGridView={isGridView}
+      viewType={viewType}
+    />
   );
 }
