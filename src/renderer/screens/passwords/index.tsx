@@ -133,7 +133,7 @@ export default function PasswordsScreen() {
           isSortModalOpen={isSortModalOpen}
           modalPosition={modalPosition}
           searchTerm={searchTerm}
-          selectedPassword={selectedPassword}
+          selectedItem={selectedPassword}
           setIsCreateModalOpen={setIsCreateModalOpen}
           setIsGridView={setIsGridView}
           setIsSettingsDrawerOpen={setIsSettingsDrawerOpen}
@@ -168,7 +168,7 @@ export default function PasswordsScreen() {
       isSortModalOpen={isSortModalOpen}
       modalPosition={modalPosition}
       searchTerm={searchTerm}
-      selectedPassword={selectedPassword}
+      selectedItem={selectedPassword}
       setIsCreateModalOpen={setIsCreateModalOpen}
       setIsGridView={setIsGridView}
       setIsSettingsDrawerOpen={setIsSettingsDrawerOpen}

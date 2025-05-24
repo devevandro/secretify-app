@@ -41,7 +41,7 @@ export default function ListView(props: ItemsProps) {
             groupedDatas={props.groupedItems}
             isLoading={props.isFetching}
             viewType={props.viewType}
-            selectedData={props.selectedPassword}
+            selectedItem={props.selectedItem}
             isGridView={props.isGridView}
             children={
               <ListViewRender

@@ -18,7 +18,7 @@ export function ListContentResizable({
   filteredDatas,
   groupedDatas,
   viewType,
-  selectedData,
+  selectedItem,
   children,
 }: {
   isGridView: boolean;
@@ -26,7 +26,7 @@ export function ListContentResizable({
   groupedDatas?: any;
   isLoading: boolean;
   viewType: "type" | "all";
-  selectedData: any | null;
+  selectedItem: any | null;
   children: JSX.Element;
 }) {
   return (
@@ -48,8 +48,8 @@ export function ListContentResizable({
         className="bg-[#1a1a1a] overflow-y-auto custom-scrollbar"
       >
         <PasswordDetailsPanel
-          selectedPassword={selectedData}
-          isLoading={isLoading && selectedData === null}
+          selectedPassword={selectedItem}
+          isLoading={isLoading && selectedItem === null}
         />
       </ResizablePanel>
     </ResizablePanelGroup>

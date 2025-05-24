@@ -12,7 +12,7 @@ export type ItemsProps = {
   filteredItems: any[];
   viewType: "all" | "type";
   isGridView: boolean;
-  selectedPassword: any | null;
+  selectedItem: any | null;
   modalPosition: { top: number; left: number; right: number } | undefined;
   createButtonRef: React.RefObject<HTMLButtonElement | null>;
   sortButtonRef: React.RefObject<HTMLButtonElement | null>;
