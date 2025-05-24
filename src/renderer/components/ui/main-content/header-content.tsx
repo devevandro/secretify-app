@@ -4,6 +4,7 @@ import type React from "react";
 
 import { Bell, Grid, List, Plus, Search, Settings } from "lucide-react";
 import HorizontalDivider from "renderer/components/horizontal-divider";
+import { useLocation } from "react-router-dom";
 
 export function HeaderContent({
   pageName,
@@ -34,6 +35,8 @@ export function HeaderContent({
   setIsGridView: (isGridView: boolean) => void;
   setIsSettingsDrawerOpen: (isOpen: boolean) => void;
 }) {
+  const location = useLocation();
+  const currentPath = location.pathname;
   return (
     <div className="flex items-center border-l-2 justify-between p-2 md:p-3 border-b border-[#000000] bg-[#141414]">
       <div className="flex items-center">
@@ -84,16 +87,18 @@ export function HeaderContent({
         >
           <Plus className="h-4 w-4 md:h-5 md:w-5" />
         </button>
-        <button
-          ref={sortButtonRef}
-          className={`p-1 md:p-1.5 rounded-md hover:bg-gray-700 ${
-            viewType === "type" ? "bg-gray-700" : ""
-          }`}
-          onClick={handleOpenSortModal}
-          title="Ordenar itens"
-        >
-          <img src="/svg/order-gray.svg" alt="" className="w-6 h-6" />
-        </button>
+        {currentPath === "dashboard" && (
+          <button
+            ref={sortButtonRef}
+            className={`p-1 md:p-1.5 rounded-md hover:bg-gray-700 ${
+              viewType === "type" ? "bg-gray-700" : ""
+            }`}
+            onClick={handleOpenSortModal}
+            title="Ordenar itens"
+          >
+            <img src="/svg/order-gray.svg" alt="" className="w-6 h-6" />
+          </button>
+        )}
         <button
           className="p-1 md:p-1.5 rounded-md hover:bg-gray-700"
           onClick={() => setIsGridView(!isGridView)}
