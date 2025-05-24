@@ -137,7 +137,6 @@ export default function Dashboard() {
     queryKey: ["passwords"],
     queryFn: async () => await window.dataApi.fetchPasswords(),
   });
-  console.log(data, "cacete");
 
   const renderPasswords = (passwords: any[]) => {
     if (isLoading) {
