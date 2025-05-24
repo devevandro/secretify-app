@@ -4,6 +4,7 @@ import type React from "react";
 
 import { Bell, Grid, List, Plus, Search, Settings } from "lucide-react";
 import HorizontalDivider from "renderer/components/horizontal-divider";
+import { useLocation } from "react-router-dom";
 
 export function HeaderContent({
   pageName,
@@ -34,6 +35,8 @@ export function HeaderContent({
   setIsGridView: (isGridView: boolean) => void;
   setIsSettingsDrawerOpen: (isOpen: boolean) => void;
 }) {
+  const location = useLocation();
+  const currentPath = location.pathname;
   return (
     <div className="flex items-center border-l-2 justify-between p-2 md:p-3 border-b border-[#000000] bg-[#141414]">
       <div className="flex items-center">
@@ -76,34 +79,34 @@ export function HeaderContent({
             </button>
           </div>
         </div>
-        {!isGridView && (
+        <button
+          ref={createButtonRef}
+          className="p-1 md:p-1.5 rounded-md hover:bg-gray-700 text-blue-400"
+          onClick={handleOpenCreateModal}
+          title="Criar novo"
+        >
+          <Plus className="h-4 w-4 md:h-5 md:w-5" />
+        </button>
+        {currentPath === "dashboard" && (
           <button
-            ref={createButtonRef}
-            className="p-1 md:p-1.5 rounded-md hover:bg-gray-700 text-blue-400"
-            onClick={handleOpenCreateModal}
-            title="Criar novo"
+            ref={sortButtonRef}
+            className={`p-1 md:p-1.5 rounded-md hover:bg-gray-700 ${
+              viewType === "type" ? "bg-gray-700" : ""
+            }`}
+            onClick={handleOpenSortModal}
+            title="Ordenar itens"
           >
-            <Plus className="h-4 w-4 md:h-5 md:w-5" />
+            <img src="/svg/order-gray.svg" alt="" className="w-6 h-6" />
           </button>
         )}
-        <button
-          ref={sortButtonRef}
-          className={`p-1 md:p-1.5 rounded-md hover:bg-gray-700 ${
-            viewType === "type" ? "bg-gray-700" : ""
-          }`}
-          onClick={handleOpenSortModal}
-          title="Ordenar itens"
-        >
-          <img src="/svg/order-gray.svg" alt="" className="w-6 h-6" />
-        </button>
         <button
           className="p-1 md:p-1.5 rounded-md hover:bg-gray-700"
           onClick={() => setIsGridView(!isGridView)}
         >
           {isGridView ? (
-            <List className="h-4 w-4 md:h-5 md:w-5 text-gray-400" />
-          ) : (
             <Grid className="h-4 w-4 md:h-5 md:w-5 text-gray-400" />
+          ) : (
+            <List className="h-4 w-4 md:h-5 md:w-5 text-gray-400" />
           )}
         </button>
         <button

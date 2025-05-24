@@ -19,9 +19,9 @@ export function AppRoutes() {
         <>
           <Route path="/" element={<LoginScreen />} />
           <Route path="/verify" element={<VerifyScreen />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/favorites" element={<FavoritesScreen />} />
-          <Route path="/favorites-sites" element={<FavoritesSitesScreen />} />
+          {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+          {/* <Route path="/favorites" element={<FavoritesScreen />} /> */}
+          {/* <Route path="/favorites-sites" element={<FavoritesSitesScreen />} /> */}
           <Route path="/trash" element={<TrashScreen />} />
           <Route path="/signup" element={<SetupScreen />} />
           <Route path="/passwords" element={<PasswordsScreen />} />
