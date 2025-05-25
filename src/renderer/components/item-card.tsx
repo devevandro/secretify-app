@@ -112,7 +112,7 @@ export default function ItemCard({
     toast.success(`${name} excluído`, {
       duration: 3000,
       className:
-        "bg-green-600 text-white border-green-700 py-2 px-3 text-sm slide-in-from-right",
+        "bg-green-600 text-white border-green-700 = text-sm slide-in-from-right",
     });
   };
 
@@ -123,7 +123,7 @@ export default function ItemCard({
   if (listView) {
     return (
       <div
-        className="overflow-hidden custom-scrollbar group relative cursor-pointer flex bg-[#1e1e1e] hover:bg-[#252525] border-b-2 border-[#292929] transition-colors duration-200"
+        className="overflow-hidden custom-scrollbar group relative cursor-pointer flex bg-[#1e1e1e] hover:bg-[#252525] border-b-2 border-[#141414] transition-colors duration-200"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onClick={(e) => {

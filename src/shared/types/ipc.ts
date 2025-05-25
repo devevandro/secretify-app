@@ -32,6 +32,17 @@ export interface Favorites {
   lastAccess: string;
 }
 
+export interface Commands {
+  id: string;
+  type: string;
+  plaintext: {
+    description: string;
+    name: string;
+    command: string;
+  };
+  lastAccess: string;
+}
+
 export interface FetchAllPasswordsReponse {
   data: Password[];
 }
@@ -56,4 +67,8 @@ export interface FetchAllFavoritesReponse {
 
 export interface FetchAllFavoritesSitesReponse {
   data: FavoritesSites[];
+}
+
+export interface FetchAllCommandsSitesReponse {
+  data: Commands[];
 }

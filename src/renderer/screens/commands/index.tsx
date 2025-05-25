@@ -10,10 +10,10 @@ import { useQuery } from "@tanstack/react-query";
 
 import { usePlatform } from "../../hooks/use-platform";
 
-export default function FavoritesScreen() {
+export default function CommandsScreen() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isGridView, setIsGridView] = useState(true);
-  const [filtereMyFavorites, setFiltereMyFavorites] = useState<any[]>([]);
+  const [filteredCommands, setFilteredCommands] = useState<any[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [isSortModalOpen, setIsSortModalOpen] = useState(false);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -45,7 +45,7 @@ export default function FavoritesScreen() {
   }, []);
 
   // useEffect(() => {
-  //   let result = [...passwords];
+  //   let result = [...Commands];
 
   //   if (searchTerm) {
   //     result = result.filter((password) =>
@@ -53,22 +53,20 @@ export default function FavoritesScreen() {
   //     );
   //   }
 
-  //   setFiltereMyFavorites(result);
-  // }, [searchTerm, passwords]);
+  //   setFilteredCommands(result);
+  // }, [searchTerm, Commands]);
 
   const handleDeletePassword = (id: string) => {
-    // setPasswords((prevPasswords) =>
-    //   prevPasswords.filter((password) => items.id !== id)
+    // setCommands((prevCommands) =>
+    //   prevCommands.filter((password) => items.id !== id)
     // );
   };
 
-  const groupeMyFavorites = {
-    personal: filtereMyFavorites.filter((p) => !p.status),
-    shared: filtereMyFavorites.filter(
-      (p) => p.status === "senha compartilhada"
-    ),
-    social: filtereMyFavorites.filter((p) => p.status === "social network"),
-    tools: filtereMyFavorites.filter(
+  const groupedCommands = {
+    personal: filteredCommands.filter((p) => !p.status),
+    shared: filteredCommands.filter((p) => p.status === "senha compartilhada"),
+    social: filteredCommands.filter((p) => p.status === "social network"),
+    tools: filteredCommands.filter(
       (p) => !p.status || p.status === "senha compartilhada"
     ),
   };
@@ -110,8 +108,8 @@ export default function FavoritesScreen() {
   };
 
   const { data, isFetching } = useQuery({
-    queryKey: ["my-favorites"],
-    queryFn: async () => await window.dataApi.fetchFavoriteSites(),
+    queryKey: ["commands"],
+    queryFn: async () => await window.dataApi.fetchCommands(),
   });
 
   if (isGridView) {
@@ -121,8 +119,8 @@ export default function FavoritesScreen() {
           isFetching={isFetching}
           items={data?.data}
           createButtonRef={createButtonRef}
-          filteredItems={filtereMyFavorites}
-          groupedItems={groupeMyFavorites}
+          filteredItems={filteredCommands}
+          groupedItems={groupedCommands}
           handleCardClick={handleCardClick}
           handleDeleteItem={handleDeletePassword}
           handleOpenCreateModal={handleOpenCreateModal}
@@ -145,7 +143,7 @@ export default function FavoritesScreen() {
           sortButtonRef={sortButtonRef}
           toggleSidebar={toggleSidebar}
           viewType={viewType}
-          pageName="Meus Favoritos"
+          pageName="Comandos"
         />
       </>
     );
@@ -156,8 +154,8 @@ export default function FavoritesScreen() {
       isFetching={isFetching}
       items={data?.data}
       createButtonRef={createButtonRef}
-      filteredItems={filtereMyFavorites}
-      groupedItems={groupeMyFavorites}
+      filteredItems={filteredCommands}
+      groupedItems={groupedCommands}
       handleCardClick={handleCardClick}
       handleDeleteItem={handleDeletePassword}
       handleOpenCreateModal={handleOpenCreateModal}
@@ -180,7 +178,7 @@ export default function FavoritesScreen() {
       sortButtonRef={sortButtonRef}
       toggleSidebar={toggleSidebar}
       viewType={viewType}
-      pageName="Meus Favoritos"
+      pageName="Comandos"
     />
   );
 }
