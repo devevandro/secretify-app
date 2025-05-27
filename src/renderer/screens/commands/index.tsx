@@ -22,7 +22,7 @@ export default function CommandsScreen() {
   const [modalPosition, setModalPosition] = useState<
     { top: number; left: number; right: number } | undefined
   >();
-  const [selectedPassword, setSelectedPassword] = useState<any | null>(null);
+  const [selectedItem, setSelectedItem] = useState<any | null>(null);
 
   const createButtonRef = useRef<HTMLButtonElement>(null);
   const sortButtonRef = useRef<HTMLButtonElement>(null);
@@ -48,7 +48,7 @@ export default function CommandsScreen() {
   //   let result = [...Commands];
 
   //   if (searchTerm) {
-  //     result = result.filter((password) =>
+  //     result = result.filter((Item) =>
   //       items.name.toLowerCase().includes(searchTerm.toLowerCase())
   //     );
   //   }
@@ -56,9 +56,9 @@ export default function CommandsScreen() {
   //   setFilteredCommands(result);
   // }, [searchTerm, Commands]);
 
-  const handleDeletePassword = (id: string) => {
+  const handleDeleteItem = (id: string) => {
     // setCommands((prevCommands) =>
-    //   prevCommands.filter((password) => items.id !== id)
+    //   prevCommands.filter((Item) => items.id !== id)
     // );
   };
 
@@ -103,8 +103,8 @@ export default function CommandsScreen() {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const handleCardClick = (password: any) => {
-    setSelectedPassword(password);
+  const handleCardClick = (Item: any) => {
+    setSelectedItem(Item);
   };
 
   const { data, isFetching } = useQuery({
@@ -122,7 +122,7 @@ export default function CommandsScreen() {
           filteredItems={filteredCommands}
           groupedItems={groupedCommands}
           handleCardClick={handleCardClick}
-          handleDeleteItem={handleDeletePassword}
+          handleDeleteItem={handleDeleteItem}
           handleOpenCreateModal={handleOpenCreateModal}
           handleOpenSortModal={handleOpenSortModal}
           handleSearch={handleSearch}
@@ -134,7 +134,7 @@ export default function CommandsScreen() {
           isSortModalOpen={isSortModalOpen}
           modalPosition={modalPosition}
           searchTerm={searchTerm}
-          selectedItem={selectedPassword}
+          selectedItem={selectedItem}
           setIsCreateModalOpen={setIsCreateModalOpen}
           setIsGridView={setIsGridView}
           setIsSettingsDrawerOpen={setIsSettingsDrawerOpen}
@@ -157,7 +157,7 @@ export default function CommandsScreen() {
       filteredItems={filteredCommands}
       groupedItems={groupedCommands}
       handleCardClick={handleCardClick}
-      handleDeleteItem={handleDeletePassword}
+      handleDeleteItem={handleDeleteItem}
       handleOpenCreateModal={handleOpenCreateModal}
       handleOpenSortModal={handleOpenSortModal}
       handleSearch={handleSearch}
@@ -169,7 +169,7 @@ export default function CommandsScreen() {
       isSortModalOpen={isSortModalOpen}
       modalPosition={modalPosition}
       searchTerm={searchTerm}
-      selectedItem={selectedPassword}
+      selectedItem={selectedItem}
       setIsCreateModalOpen={setIsCreateModalOpen}
       setIsGridView={setIsGridView}
       setIsSettingsDrawerOpen={setIsSettingsDrawerOpen}
