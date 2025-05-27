@@ -98,6 +98,8 @@ export function SidebarNavigation({
           icon={<Terminal className="h-4 w-4 md:h-5 md:w-5" />}
           label="Comandos"
           isOpen={isOpen}
+          href="/commands"
+          isActive={currentPath === "/commands"}
         />
 
         <div

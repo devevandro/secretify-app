@@ -23,7 +23,7 @@ export default function GridItemCard({
 }: GridItemCardProps) {
   return (
     <>
-      <div className="bg-[#2a2a2a] p-4 md:p-8 flex justify-center items-center rounded-[6px] group-hover:bg-[#333333] transition-colors duration-200">
+      <div className="bg-[#2a2a2a] p-4 md:p-8 flex justify-center items-center rounded-t-[6px] group-hover:bg-[#333333] transition-colors duration-200 cursor-pointer">
         <div
           className={`absolute top-1.5 left-1.5 md:top-2 md:left-2 text-gray-500 transition-opacity duration-200 ${
             isHovered || isFavorite ? "opacity-100" : "opacity-0"

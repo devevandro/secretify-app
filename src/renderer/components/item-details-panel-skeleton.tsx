@@ -1,4 +1,4 @@
-export default function PasswordDetailsPanelSkeleton() {
+export function ItemDetailsPanelSkeleton() {
   return (
     <div className="h-full flex flex-col animate-pulse">
       <div className="p-4 border-b border-gray-800 flex items-center">

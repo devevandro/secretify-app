@@ -9,7 +9,7 @@ import {
   ResizablePanelGroup,
 } from "../../../components/ui/resizable";
 import ItemSection from "renderer/components/item-section";
-import PasswordDetailsPanel from "renderer/components/item-details-panel";
+import { ItemDetailsPanel } from "renderer/components/item-details-panel";
 import { ViewItemSection } from "renderer/views/components/view-item-section";
 
 export function ListContentResizable({
@@ -47,7 +47,7 @@ export function ListContentResizable({
         minSize={30}
         className="bg-[#1a1a1a] overflow-y-auto custom-scrollbar"
       >
-        <PasswordDetailsPanel
+        <ItemDetailsPanel
           selectedPassword={selectedItem}
           isLoading={isLoading && selectedItem === null}
         />

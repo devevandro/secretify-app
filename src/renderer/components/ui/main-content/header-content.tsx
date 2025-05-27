@@ -2,7 +2,15 @@
 
 import type React from "react";
 
-import { Bell, Grid, List, Plus, Search, Settings } from "lucide-react";
+import {
+  Bell,
+  Grid,
+  List,
+  Plus,
+  Search,
+  Settings,
+  ChartNoAxesGantt,
+} from "lucide-react";
 import HorizontalDivider from "renderer/components/horizontal-divider";
 import { useLocation } from "react-router-dom";
 
@@ -50,7 +58,11 @@ export function HeaderContent({
             className="w-6 h-6 cursor-pointer"
           />
         </button>
-        <HorizontalDivider borderColor="border-[#626262]" height="h-6" />
+        <HorizontalDivider
+          marginLeft="m-1"
+          borderColor="border-[#626262]"
+          height="h-6"
+        />
         <span className="text-[#626262] text-sm md:text-base">
           Menu /&nbsp;
         </span>
@@ -79,45 +91,73 @@ export function HeaderContent({
             </button>
           </div>
         </div>
-        <button
-          ref={createButtonRef}
-          className="p-1 md:p-1.5 rounded-md hover:bg-gray-700 text-blue-400"
-          onClick={handleOpenCreateModal}
-          title="Criar novo"
-        >
-          <Plus className="h-4 w-4 md:h-5 md:w-5" />
-        </button>
+        <HorizontalDivider
+          marginLeft="m-1"
+          borderColor="border-[#626262]"
+          height="h-6"
+        />
         {currentPath === "dashboard" && (
-          <button
-            ref={sortButtonRef}
-            className={`p-1 md:p-1.5 rounded-md hover:bg-gray-700 ${
-              viewType === "type" ? "bg-gray-700" : ""
-            }`}
-            onClick={handleOpenSortModal}
-            title="Ordenar itens"
-          >
-            <img src="/svg/order-gray.svg" alt="" className="w-6 h-6" />
-          </button>
+          <>
+            <button
+              className="p-1 md:p-1.5 text-[#7A7A7A] cursor-pointer w-5.5"
+              onClick={handleOpenCreateModal}
+              title="Criar novo"
+            >
+              <Plus className="h-4 w-4 md:h-5 md:w-5" />
+            </button>
+            <HorizontalDivider
+              marginLeft="m-1"
+              borderColor="border-[#626262]"
+              height="h-6"
+            />
+          </>
+        )}
+        {currentPath === "dashboard" && (
+          <>
+            <button
+              ref={sortButtonRef}
+              className="p-1 md:p-1.5 text-[#7A7A7A] cursor-pointer w-5.5"
+              onClick={handleOpenSortModal}
+              title="Ordenar itens"
+            >
+              <ChartNoAxesGantt className="h-4 w-4 md:h-5 md:w-5" />
+            </button>
+            <HorizontalDivider
+              marginLeft="m-1"
+              borderColor="border-[#626262]"
+              height="h-6"
+            />
+          </>
         )}
         <button
-          className="p-1 md:p-1.5 rounded-md hover:bg-gray-700"
+          className="p-1 md:p-1.5 w-5.5 text-[#7A7A7A] cursor-pointer"
           onClick={() => setIsGridView(!isGridView)}
         >
           {isGridView ? (
-            <Grid className="h-4 w-4 md:h-5 md:w-5 text-gray-400" />
+            <Grid className="h-4 w-4 md:h-5 md:w-5" />
           ) : (
-            <List className="h-4 w-4 md:h-5 md:w-5 text-gray-400" />
+            <List className="h-4 w-4 md:h-5 md:w-5" />
           )}
         </button>
+        <HorizontalDivider
+          marginLeft="m-1"
+          borderColor="border-[#626262]"
+          height="h-6"
+        />
         <button
-          className="p-1 md:p-1.5 rounded-md hover:bg-gray-700 text-blue-400"
+          className="p-1 md:p-1.5 text-[#7A7A7A] cursor-pointer w-5"
           onClick={() => setIsSettingsDrawerOpen(true)}
           title="Configurações"
         >
           <Settings className="h-4 w-4 md:h-5 md:w-5" />
         </button>
-        <button className="p-1 md:p-1.5 rounded-md hover:bg-gray-700">
-          <Bell className="h-4 w-4 md:h-5 md:w-5 text-gray-400" />
+        <HorizontalDivider
+          marginLeft="m-1"
+          borderColor="border-[#626262]"
+          height="h-6"
+        />
+        <button className="p-1 md:p-1.5 text-[#7A7A7A] cursor-pointer">
+          <Bell className="h-4 w-4 md:h-5 md:w-5" />
         </button>
       </div>
     </div>

@@ -3,11 +3,12 @@
 import type React from "react";
 import { useEffect, useRef, useState } from "react";
 
+import GridView from "renderer/views/gridview";
+import ListView from "renderer/views/listview";
+
 import { useQuery } from "@tanstack/react-query";
 
 import { usePlatform } from "../../hooks/use-platform";
-import GridView from "renderer/views/gridview";
-import ListView from "renderer/views/listview";
 
 export default function PasswordsScreen() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);

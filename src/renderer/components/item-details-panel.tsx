@@ -14,11 +14,11 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 
-import ItemDetailsPanelSkeleton from "./item-details-panel-skeleton";
+import { ItemDetailsPanelSkeleton } from "./item-details-panel-skeleton";
 import { NoItem } from "./no-item";
 
 interface ItemDetailsPanelProps {
-  selectedPassword: {
+  selectedItem: {
     id: string;
     name: string;
     iconUrl?: string;
@@ -36,17 +36,17 @@ interface ItemDetailsPanelProps {
   isLoading?: boolean;
 }
 
-export default function ItemDetailsPanel({
-  selectedPassword,
+export function ItemDetailsPanel({
+  selectedItem,
   isLoading = false,
 }: ItemDetailsPanelProps) {
-  const [showPassword, setShowPassword] = useState(false);
+  const [showItem, setShowItem] = useState(false);
 
   if (isLoading) {
     return <ItemDetailsPanelSkeleton />;
   }
 
-  if (!selectedPassword) {
+  if (!selectedItem) {
     return (
       <NoItem
         title="Nenhum Item Selecionado!"
@@ -70,29 +70,29 @@ export default function ItemDetailsPanel({
       <div className="p-4 border-b border-gray-800 flex items-center">
         <div
           className={`w-10 h-10 rounded-md flex items-center justify-center mr-3 ${
-            selectedPassword.color || "bg-gray-600"
+            selectedItem.color || "bg-gray-600"
           }`}
         >
-          {selectedPassword.iconUrl ? (
+          {selectedItem.iconUrl ? (
             <img
-              src={selectedPassword.iconUrl || "/placeholder.svg"}
-              alt={selectedPassword.name}
+              src={selectedItem.iconUrl || "/placeholder.svg"}
+              alt={selectedItem.name}
               width={24}
               height={24}
               className="object-contain"
             />
           ) : (
             <span className="text-white text-lg font-bold">
-              {selectedPassword.name.charAt(0)}
+              {selectedItem.name.charAt(0)}
             </span>
           )}
         </div>
         <div>
           <h2 className="text-lg font-medium text-white">
-            {selectedPassword.name}
+            {selectedItem.name}
           </h2>
           <p className="text-sm text-gray-400">
-            {selectedPassword.status || "senha privada"}
+            {selectedItem.status || "senha privada"}
           </p>
         </div>
       </div>
@@ -105,15 +105,15 @@ export default function ItemDetailsPanel({
           </h3>
           <div className="flex items-center bg-[#2a2a2a] rounded p-2">
             <p className="text-white text-sm flex-1 truncate">
-              {selectedPassword.url ||
-                `https://${selectedPassword.name.toLowerCase()}.com`}
+              {selectedItem.url ||
+                `https://${selectedItem.name.toLowerCase()}.com`}
             </p>
             <button
               className="text-gray-400 hover:text-white p-1"
               onClick={() =>
                 handleCopyToClipboard(
-                  selectedPassword.url ||
-                    `https://${selectedPassword.name.toLowerCase()}.com`,
+                  selectedItem.url ||
+                    `https://${selectedItem.name.toLowerCase()}.com`,
                   "URL"
                 )
               }
@@ -130,16 +130,16 @@ export default function ItemDetailsPanel({
           </h3>
           <div className="flex items-center bg-[#2a2a2a] rounded p-2">
             <p className="text-white text-sm flex-1 truncate">
-              {selectedPassword.username ||
-                selectedPassword.user ||
+              {selectedItem.username ||
+                selectedItem.user ||
                 "usuario@email.com"}
             </p>
             <button
               className="text-gray-400 hover:text-white p-1"
               onClick={() =>
                 handleCopyToClipboard(
-                  selectedPassword.username ||
-                    selectedPassword.user ||
+                  selectedItem.username ||
+                    selectedItem.user ||
                     "usuario@email.com",
                   "Nome de usuário"
                 )
@@ -157,15 +157,13 @@ export default function ItemDetailsPanel({
           </h3>
           <div className="flex items-center bg-[#2a2a2a] rounded p-2">
             <p className="text-white text-sm flex-1 truncate">
-              {showPassword
-                ? selectedPassword.password || "********"
-                : "••••••••"}
+              {showItem ? selectedItem.password || "********" : "••••••••"}
             </p>
             <button
               className="text-gray-400 hover:text-white p-1 mr-1"
-              onClick={() => setShowPassword(!showPassword)}
+              onClick={() => setShowItem(!showItem)}
             >
-              {showPassword ? (
+              {showItem ? (
                 <EyeOff className="h-4 w-4" />
               ) : (
                 <Eye className="h-4 w-4" />
@@ -175,7 +173,7 @@ export default function ItemDetailsPanel({
               className="text-gray-400 hover:text-white p-1"
               onClick={() =>
                 handleCopyToClipboard(
-                  selectedPassword.password || "********",
+                  selectedItem.password || "********",
                   "Senha"
                 )
               }
@@ -189,7 +187,7 @@ export default function ItemDetailsPanel({
           <h3 className="text-sm text-gray-400 mb-2">Notas</h3>
           <div className="bg-[#2a2a2a] rounded p-3">
             <p className="text-white text-sm">
-              {selectedPassword.notes || "Nenhuma nota adicionada."}
+              {selectedItem.notes || "Nenhuma nota adicionada."}
             </p>
           </div>
         </div>
@@ -199,7 +197,7 @@ export default function ItemDetailsPanel({
             <Calendar className="h-4 w-4 text-gray-400 mr-2" />
             <span className="text-gray-400">Criado em:</span>
             <span className="text-white ml-2">
-              {selectedPassword.createdAt || "03/04/2025"}
+              {selectedItem.createdAt || "03/04/2025"}
             </span>
           </div>
 
@@ -209,7 +207,7 @@ export default function ItemDetailsPanel({
             <span className="text-white ml-2">03/04/2025</span>
           </div>
 
-          {selectedPassword.isShared && (
+          {selectedItem.isShared && (
             <div className="flex items-center text-sm">
               <LinkIcon className="h-4 w-4 text-gray-400 mr-2" />
               <span className="text-gray-400">Compartilhado com:</span>

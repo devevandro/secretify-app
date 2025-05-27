@@ -3,8 +3,9 @@ import { IPC } from "shared/constants/ipc";
 import {
   CreatePasswordRequest,
   CreatePasswordResponse,
-  FetchAllFavoritesSitesReponse,
+  FetchAllFavoritesReponse,
   FetchAllPasswordsReponse,
+  FetchAllCommandsSitesReponse,
 } from "shared/types/ipc";
 
 declare global {
@@ -24,8 +25,12 @@ const dataApi = {
     return ipcRenderer.invoke(IPC.PASSWORDS.CREATE, req);
   },
 
-  fetchFavoriteSites: (): Promise<FetchAllFavoritesSitesReponse> => {
-    return ipcRenderer.invoke(IPC.FAVORITES_SITES.FETCH_ALL);
+  fetchFavoriteSites: (): Promise<FetchAllFavoritesReponse> => {
+    return ipcRenderer.invoke(IPC.MY_FAVORITES.FETCH_ALL);
+  },
+
+  fetchCommands: (): Promise<FetchAllCommandsSitesReponse> => {
+    return ipcRenderer.invoke(IPC.COMMANDS.FETCH_ALL);
   },
 };
 

@@ -5,10 +5,7 @@ interface ItemDetailsModalProps {
   text: string;
 }
 
-export default function ItemDetailsModal({
-  label,
-  text,
-}: ItemDetailsModalProps) {
+export function ItemCardDetailsModal({ label, text }: ItemDetailsModalProps) {
   return (
     <div className="space-y-3">
       <div>
