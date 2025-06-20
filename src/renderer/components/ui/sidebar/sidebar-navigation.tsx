@@ -36,6 +36,7 @@ export function SidebarNavigation({
         <SidebarItem
           icon={
             <ImgIcon
+              width="w-5"
               src={
                 currentPath === "/dashboard"
                   ? "history-blue.svg"
@@ -52,6 +53,7 @@ export function SidebarNavigation({
         <SidebarItem
           icon={
             <ImgIcon
+              width="w-5"
               src={
                 currentPath === "/favorites"
                   ? "favorite-blue.svg"
@@ -67,6 +69,7 @@ export function SidebarNavigation({
         <SidebarItem
           icon={
             <ImgIcon
+              width="w-5"
               src={
                 currentPath === "/passwords" ? "key-blue.svg" : "key-gray.svg"
               }
@@ -78,19 +81,19 @@ export function SidebarNavigation({
           isActive={currentPath === "/passwords"}
         />
         <SidebarItem
-          icon={<ImgIcon src="link-gray.svg" />}
+          icon={<ImgIcon width="w-5" src="link-gray.svg" />}
           label="Sites Favoritos"
           isOpen={isOpen}
           href="/favorites-sites"
           isActive={currentPath === "/favorites-sites"}
         />
         <SidebarItem
-          icon={<ImgIcon src="share-gray.svg" />}
+          icon={<ImgIcon width="w-5" src="share-gray.svg" />}
           label="Chaves de Acesso"
           isOpen={isOpen}
         />
         <SidebarItem
-          icon={<ImgIcon src="share-gray.svg" />}
+          icon={<ImgIcon width="w-5" src="share-gray.svg" />}
           label="Conexão Banco de Dados"
           isOpen={isOpen}
         />
