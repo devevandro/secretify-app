@@ -12,7 +12,7 @@ import { usePlatform } from "../../hooks/use-platform";
 
 export default function PasswordsScreen() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [isGridView, setIsGridView] = useState(true);
+  const [isGridView, setIsGridView] = useState(false);
   const [filteredPasswords, setFilteredPasswords] = useState<any[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [isSortModalOpen, setIsSortModalOpen] = useState(false);
@@ -114,43 +114,43 @@ export default function PasswordsScreen() {
 
   if (isGridView) {
     return (
-      <>
-        <GridView
-          isFetching={isFetching}
-          items={data?.data}
-          createButtonRef={createButtonRef}
-          filteredItems={filteredPasswords}
-          groupedItems={groupedPasswords}
-          handleCardClick={handleCardClick}
-          handleDeleteItem={handleDeletePassword}
-          handleOpenCreateModal={handleOpenCreateModal}
-          handleOpenSortModal={handleOpenSortModal}
-          handleSearch={handleSearch}
-          isCreateModalOpen={isCreateModalOpen}
-          isDesktop={isDesktop}
-          isGridView={isGridView}
-          isSettingsDrawerOpen={isSettingsDrawerOpen}
-          isSidebarOpen={isSidebarOpen}
-          isSortModalOpen={isSortModalOpen}
-          modalPosition={modalPosition}
-          searchTerm={searchTerm}
-          selectedItem={selectedPassword}
-          setIsCreateModalOpen={setIsCreateModalOpen}
-          setIsGridView={setIsGridView}
-          setIsSettingsDrawerOpen={setIsSettingsDrawerOpen}
-          setIsSortModalOpen={setIsSortModalOpen}
-          setViewType={setViewType}
-          sortButtonRef={sortButtonRef}
-          toggleSidebar={toggleSidebar}
-          viewType={viewType}
-          pageName="Senhas de Acesso"
-        />
-      </>
+      <GridView
+        setSelectedPassword={setSelectedPassword}
+        isFetching={isFetching}
+        items={data?.data}
+        createButtonRef={createButtonRef}
+        filteredItems={filteredPasswords}
+        groupedItems={groupedPasswords}
+        handleCardClick={handleCardClick}
+        handleDeleteItem={handleDeletePassword}
+        handleOpenCreateModal={handleOpenCreateModal}
+        handleOpenSortModal={handleOpenSortModal}
+        handleSearch={handleSearch}
+        isCreateModalOpen={isCreateModalOpen}
+        isDesktop={isDesktop}
+        isGridView={isGridView}
+        isSettingsDrawerOpen={isSettingsDrawerOpen}
+        isSidebarOpen={isSidebarOpen}
+        isSortModalOpen={isSortModalOpen}
+        modalPosition={modalPosition}
+        searchTerm={searchTerm}
+        selectedItem={selectedPassword}
+        setIsCreateModalOpen={setIsCreateModalOpen}
+        setIsGridView={setIsGridView}
+        setIsSettingsDrawerOpen={setIsSettingsDrawerOpen}
+        setIsSortModalOpen={setIsSortModalOpen}
+        setViewType={setViewType}
+        sortButtonRef={sortButtonRef}
+        toggleSidebar={toggleSidebar}
+        viewType={viewType}
+        pageName="Senhas de Acesso"
+      />
     );
   }
 
   return (
     <ListView
+      setSelectedPassword={setSelectedPassword}
       isFetching={isFetching}
       items={data?.data}
       createButtonRef={createButtonRef}
