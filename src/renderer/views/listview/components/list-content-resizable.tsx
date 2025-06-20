@@ -20,6 +20,7 @@ export function ListContentResizable({
   viewType,
   selectedItem,
   children,
+  setSelectedPassword,
 }: {
   isGridView: boolean;
   filteredDatas?: any;
@@ -28,6 +29,7 @@ export function ListContentResizable({
   viewType: "type" | "all";
   selectedItem: any | null;
   children: JSX.Element;
+  setSelectedPassword: (item: any) => void;
 }) {
   return (
     <ResizablePanelGroup direction="horizontal" className="h-full">
@@ -36,7 +38,6 @@ export function ListContentResizable({
           title="Senhas"
           children={children}
           isGridView={isGridView}
-          viewType={viewType}
         />
       </ResizablePanel>
 
@@ -48,7 +49,8 @@ export function ListContentResizable({
         className="bg-[#1a1a1a] overflow-y-auto custom-scrollbar"
       >
         <ItemDetailsPanel
-          selectedPassword={selectedItem}
+          setSelectedPassword={setSelectedPassword}
+          selectedItem={selectedItem}
           isLoading={isLoading && selectedItem === null}
         />
       </ResizablePanel>
