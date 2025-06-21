@@ -1,8 +1,10 @@
 import { ImgIcon } from "../sidebar/img-icon";
 
 type ItemsDetailsPanelHeaderProps = {
+  editMode: boolean;
   url: string;
   name: string;
+  handleEditItem: () => void;
   setIconUrl: (url: string) => string | undefined;
   setSelectedPassword: (item: any) => void;
 };
@@ -32,19 +34,29 @@ export function ItemsDetailsPanelHeader(props: ItemsDetailsPanelHeaderProps) {
         </div>
       </div>
       <div className="flex items-center p-4 space-x-2">
-        <ImgIcon src="edit-icon.svg" width="w-7" cursor="cursor-pointer" />
         <ImgIcon
-          src="star-outline-gray.svg"
-          width="w-6"
-          cursor="cursor-pointer"
-        />
-        <ImgIcon src="trash-gray.svg" width="w-3" cursor="cursor-pointer" />
-        <ImgIcon
-          src="close-icon.svg"
+          src="edit-icon.svg"
           width="w-7"
-          cursor="cursor-pointer"
-          onClick={() => props.setSelectedPassword(null)}
+          cursor={`${props.editMode ? "" : "cursor-pointer"}`}
+          onClick={props.handleEditItem}
+          disabled={props.editMode}
         />
+        {!props.editMode && (
+          <>
+            <ImgIcon
+              src="star-outline-gray.svg"
+              width="w-6"
+              cursor="cursor-pointer"
+            />
+            <ImgIcon src="trash-gray.svg" width="w-3" cursor="cursor-pointer" />
+            <ImgIcon
+              src="close-icon.svg"
+              width="w-7"
+              cursor="cursor-pointer"
+              onClick={() => props.setSelectedPassword(null)}
+            />
+          </>
+        )}
       </div>
     </div>
   );

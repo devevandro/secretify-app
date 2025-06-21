@@ -9,6 +9,7 @@ import { setIconUrl, verifyPassword } from "shared/utils/utils";
 import { ItemDetailsPanelAdicionalInformations } from "./ui/item-details-panel/item-details-panel";
 import { ItemDetailsPanelItems } from "./ui/item-details-panel/item-details-panel-items";
 import { ItemsDetailsPanelHeader } from "./ui/item-details-panel/items-details-panel-header";
+import { ItemDetailsPanelForm } from "./ui/item-details-panel/item-details-panel-form";
 
 interface ItemDetailsPanelProps {
   selectedItem: any | null;
@@ -23,6 +24,7 @@ export function ItemDetailsPanel({
   selectedItem,
   isLoading = false,
 }: ItemDetailsPanelProps) {
+  const [editMode, setEditMode] = useState<boolean>(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [showPassword, setShowPassword] = useState(true);
   const [type, setType] = useState("");
@@ -83,6 +85,10 @@ export function ItemDetailsPanel({
     }, 650);
   };
 
+  const handleEditItem = () => {
+    setEditMode(!editMode);
+  };
+
   if (isLoading) {
     return <ItemDetailsPanelSkeleton />;
   }
@@ -93,14 +99,18 @@ export function ItemDetailsPanel({
         <div className="pr-2 pl-2 h-full flex flex-col bg-[#000000] text-white">
           <div className="p-2 text-justify ">
             <div>
-              <h2 className="font-extralight text-left my-2 text-[#E0E0E0]">
-                Visualize, edite e acesse com um clique!
+              <h2 className="text-center my-2 text-[#E0E0E0]">
+                {!editMode
+                  ? "Aqui você visualiza, edita, remove e acessa o site com um clique"
+                  : "Edite os dados de acesso"}
               </h2>
             </div>
           </div>
 
           <div className="border-t-2 border-r-2 border-l-2 border-[#141414] rounded-t-[8px]">
             <ItemsDetailsPanelHeader
+              editMode={editMode}
+              handleEditItem={handleEditItem}
               name={selectedItem?.plaintext.name}
               setIconUrl={setIconUrl}
               setSelectedPassword={setSelectedPassword}
@@ -109,30 +119,43 @@ export function ItemDetailsPanel({
           </div>
 
           <div className="border-2 border-[#141414] rounded-b-[8px] overflow-auto custom-scrollbar-transparent pb-1">
-            <ItemDetailsPanelItems
-              url={selectedItem?.plaintext.url}
-              copy={copy}
-              type={type}
-              password={selectedItem?.plaintext.password}
-              setShowPassword={setShowPassword}
-              showPassword={showPassword}
-              handleCopyToClipboard={handleCopyToClipboard}
-            />
-            <VerticalDivider
-              borderColor="border-[#292929]"
-              sizeBorderBottom="2"
-            />
-            <ItemDetailsPanelAdicionalInformations
-              handleGetTextColor={handleGetTextColor}
-              profileMenuRef={profileMenuRef}
-              setIsProfileOpen={setIsProfileOpen}
-              isProfileOpen={isProfileOpen}
-            />
-            <VerticalDivider
-              borderColor="border-[#292929]"
-              sizeBorderBottom="2"
-            />
-            <div className="pb-4" />
+            {editMode && (
+              <>
+                <ItemDetailsPanelForm
+                  selectedItem={selectedItem}
+                  setEditMode={setEditMode}
+                />
+              </>
+            )}
+
+            {!editMode && (
+              <>
+                <ItemDetailsPanelItems
+                  url={selectedItem?.plaintext.url}
+                  copy={copy}
+                  type={type}
+                  password={selectedItem?.plaintext.password}
+                  setShowPassword={setShowPassword}
+                  showPassword={showPassword}
+                  handleCopyToClipboard={handleCopyToClipboard}
+                />
+                <VerticalDivider
+                  borderColor="border-[#292929]"
+                  sizeBorderBottom="2"
+                />
+                <ItemDetailsPanelAdicionalInformations
+                  handleGetTextColor={handleGetTextColor}
+                  profileMenuRef={profileMenuRef}
+                  setIsProfileOpen={setIsProfileOpen}
+                  isProfileOpen={isProfileOpen}
+                />
+                <VerticalDivider
+                  borderColor="border-[#292929]"
+                  sizeBorderBottom="2"
+                />
+              </>
+            )}
+            <div className={`${editMode ? "pb-0" : "pb-4"}`} />
           </div>
           <div className="mb-4" />
         </div>
