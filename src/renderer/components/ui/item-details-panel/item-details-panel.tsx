@@ -20,12 +20,12 @@ export function ItemDetailsPanelAdicionalInformations(
       >
         <div className="relative z-10 flex items-center w-full">
           <div className="flex items-center space-x-2">
-            <ImgIcon src="erro.svg" width="w-5" cursor="cursor-pointer" />
-            <p className="text-xs md:text-xl text-[#CCCCCC]">
+            <ImgIcon src="error-blue.svg" width="w-5" cursor="cursor-pointer" />
+            <p className="text-xs md:text-xl text-[#58BFF5]">
               Informações adicionais
             </p>
           </div>
-          <div className="ml-auto text-gray-400">
+          <div className="ml-auto text-[#58BFF5]">
             <ChevronDown
               className={`h-4 w-4 md:h-5 md:w-5 transform transition-transform duration-300 ${
                 props.isProfileOpen ? "rotate-180" : ""
