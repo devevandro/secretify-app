@@ -23,7 +23,7 @@ export function ItemDetailsPanelItems(props: ItemDetailsPanelItemsComponent) {
             {"usuario@email.com"}
           </p>
           <button
-            className="text-[#666666] hover:text-white p-1"
+            className="text-[#666666] hover:text-[#58BFF5] p-1 cursor-pointer"
             onClick={() =>
               props.handleCopyToClipboard(
                 "usuario@email.com",
@@ -59,7 +59,7 @@ export function ItemDetailsPanelItems(props: ItemDetailsPanelItemsComponent) {
             )}
           </button>
           <button
-            className="text-[#666666] hover:text-white p-1"
+            className="text-[#666666] hover:text-[#58BFF5] p-1 cursor-pointer"
             onClick={() =>
               props.handleCopyToClipboard(props.password || "********", "Senha")
             }
