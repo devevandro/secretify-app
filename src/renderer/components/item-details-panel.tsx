@@ -4,7 +4,6 @@ import { JSX, useEffect, useRef, useState } from "react";
 
 import { ItemDetailsPanelSkeleton } from "./item-details-panel-skeleton";
 import { NoItem } from "./no-item";
-import { ImgIcon } from "./ui/sidebar/img-icon";
 import VerticalDivider from "./vertical-divider";
 import { setIconUrl, verifyPassword } from "shared/utils/utils";
 import { ItemDetailsPanelAdicionalInformations } from "./ui/item-details-panel/item-details-panel";
@@ -25,7 +24,6 @@ export function ItemDetailsPanel({
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [showPassword, setShowPassword] = useState(true);
   const [type, setType] = useState("");
-  const [teste, setTeste] = useState<any[]>([]);
   const [copy, setCopy] = useState(false);
   const profileMenuRef = useRef<HTMLDivElement>(null);
 
@@ -69,6 +67,18 @@ export function ItemDetailsPanel({
     );
   };
 
+  const handleCopyToClipboard = (text: string, type: string) => {
+    navigator.clipboard.writeText(text || "");
+    setTimeout(() => {
+      setCopy(true);
+      setType(type);
+      setTimeout(() => {
+        setCopy(false);
+        setType("");
+      }, 630);
+    }, 350);
+  };
+
   if (isLoading) {
     return <ItemDetailsPanelSkeleton />;
   }
@@ -82,18 +92,6 @@ export function ItemDetailsPanel({
     );
   }
 
-  const handleCopyToClipboard = (text: string, type: string) => {
-    navigator.clipboard.writeText(text || "");
-    setTimeout(() => {
-      setCopy(true);
-      setType(type);
-      setTimeout(() => {
-        setCopy(false);
-        setType("");
-      }, 630);
-    }, 350);
-  };
-
   return (
     <div className="pr-2 pl-2 h-full flex flex-col bg-[#000000] text-white">
       <div className="p-2 text-justify ">
@@ -106,7 +104,7 @@ export function ItemDetailsPanel({
 
       <div className="border-t-2 border-r-2 border-l-2 border-[#141414] rounded-t-[8px]">
         <ItemsDetailsPanelHeader
-          name={selectedItem.plaintext.name}
+          name={selectedItem?.plaintext.name}
           setIconUrl={setIconUrl}
           setSelectedPassword={setSelectedPassword}
           url={selectedItem.plaintext.url}
