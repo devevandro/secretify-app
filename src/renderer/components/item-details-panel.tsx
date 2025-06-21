@@ -1,223 +1,165 @@
 "use client";
 
-import { useState } from "react";
+import { JSX, useEffect, useRef, useState } from "react";
 
-import {
-  Calendar,
-  Clock,
-  Copy,
-  Eye,
-  EyeOff,
-  LinkIcon,
-  Shield,
-  User,
-} from "lucide-react";
-import { toast } from "sonner";
-
-import ItemDetailsPanelSkeleton from "./item-details-panel-skeleton";
+import { ItemDetailsPanelSkeleton } from "./item-details-panel-skeleton";
 import { NoItem } from "./no-item";
+import VerticalDivider from "./vertical-divider";
+import { setIconUrl, verifyPassword } from "shared/utils/utils";
+import { ItemDetailsPanelAdicionalInformations } from "./ui/item-details-panel/item-details-panel";
+import { ItemDetailsPanelItems } from "./ui/item-details-panel/item-details-panel-items";
+import { ItemsDetailsPanelHeader } from "./ui/item-details-panel/items-details-panel-header";
+import { ItemDetailsPanelForm } from "./ui/item-details-panel/item-details-panel-form";
 
 interface ItemDetailsPanelProps {
-  selectedPassword: {
-    id: string;
-    name: string;
-    iconUrl?: string;
-    user?: string;
-    status?: string;
-    color?: string;
-    url?: string;
-    username?: string;
-    password?: string;
-    notes?: string;
-    createdAt?: string;
-    category?: string;
-    isShared?: boolean;
-  } | null;
+  selectedItem: any | null;
   isLoading?: boolean;
+  setResizable: (resizable: boolean) => void;
+  setSelectedPassword: (item: any) => void;
 }
 
-export default function ItemDetailsPanel({
-  selectedPassword,
+export function ItemDetailsPanel({
+  setResizable,
+  setSelectedPassword,
+  selectedItem,
   isLoading = false,
 }: ItemDetailsPanelProps) {
-  const [showPassword, setShowPassword] = useState(false);
+  const [editMode, setEditMode] = useState<boolean>(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [showPassword, setShowPassword] = useState(true);
+  const [type, setType] = useState("");
+  const [copy, setCopy] = useState(false);
+  const profileMenuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setResizable(selectedItem !== null ? true : false);
+  }, [selectedItem]);
+
+  useEffect(() => {
+    if (profileMenuRef.current) {
+      if (isProfileOpen) {
+        profileMenuRef.current.style.maxHeight = `${profileMenuRef.current.scrollHeight}px`;
+      } else {
+        profileMenuRef.current.style.maxHeight = "0";
+      }
+    }
+  }, [isProfileOpen]);
+
+  const handleGetTextColor = (): JSX.Element | null => {
+    const text = verifyPassword(selectedItem?.plaintext?.password || "");
+
+    const config = {
+      forte: {
+        textColor: "#3EB554",
+        bgColor: "#3EB55414",
+      },
+      média: {
+        textColor: "#EDDF24",
+        bgColor: "#F1C40F14",
+      },
+      fraca: {
+        textColor: "#ED2A2A",
+        bgColor: "#E54C5014",
+      },
+    };
+
+    const style = config[text as keyof typeof config];
+    if (!style) return null;
+
+    return (
+      <p
+        className={`text-[${style.textColor}] bg-[${style.bgColor}] uppercase text-xs text-center rounded p-1 w-20 ml-2`}
+      >
+        {text}
+      </p>
+    );
+  };
+
+  const handleCopyToClipboard = (text: string, type: string) => {
+    navigator.clipboard.writeText(text || "");
+    setCopy(true);
+    setType(type);
+    setTimeout(() => {
+      setCopy(false);
+      setType("");
+    }, 650);
+  };
+
+  const handleEditItem = () => {
+    setEditMode(!editMode);
+  };
 
   if (isLoading) {
     return <ItemDetailsPanelSkeleton />;
   }
 
-  if (!selectedPassword) {
-    return (
-      <NoItem
-        title="Nenhum Item Selecionado!"
-        subtitle="Selecione um item para ver seus detalhes."
-      />
-    );
-  }
-
-  const handleCopyToClipboard = (text: string, type: string) => {
-    navigator.clipboard.writeText(text || "");
-
-    toast.success(`${type} copiado`, {
-      duration: 2000,
-      className: "bg-[#1a1a1a] border-gray-700 py-1.5 px-3 text-sm",
-      position: "bottom-center",
-    });
-  };
-
   return (
-    <div className="h-full flex flex-col">
-      <div className="p-4 border-b border-gray-800 flex items-center">
-        <div
-          className={`w-10 h-10 rounded-md flex items-center justify-center mr-3 ${
-            selectedPassword.color || "bg-gray-600"
-          }`}
-        >
-          {selectedPassword.iconUrl ? (
-            <img
-              src={selectedPassword.iconUrl || "/placeholder.svg"}
-              alt={selectedPassword.name}
-              width={24}
-              height={24}
-              className="object-contain"
-            />
-          ) : (
-            <span className="text-white text-lg font-bold">
-              {selectedPassword.name.charAt(0)}
-            </span>
-          )}
-        </div>
-        <div>
-          <h2 className="text-lg font-medium text-white">
-            {selectedPassword.name}
-          </h2>
-          <p className="text-sm text-gray-400">
-            {selectedPassword.status || "senha privada"}
-          </p>
-        </div>
-      </div>
-
-      <div className="flex-1 overflow-y-auto custom-scrollbar p-4">
-        <div className="mb-6">
-          <h3 className="text-sm text-gray-400 mb-2 flex items-center">
-            <LinkIcon className="h-4 w-4 mr-2" />
-            URL
-          </h3>
-          <div className="flex items-center bg-[#2a2a2a] rounded p-2">
-            <p className="text-white text-sm flex-1 truncate">
-              {selectedPassword.url ||
-                `https://${selectedPassword.name.toLowerCase()}.com`}
-            </p>
-            <button
-              className="text-gray-400 hover:text-white p-1"
-              onClick={() =>
-                handleCopyToClipboard(
-                  selectedPassword.url ||
-                    `https://${selectedPassword.name.toLowerCase()}.com`,
-                  "URL"
-                )
-              }
-            >
-              <Copy className="h-4 w-4" />
-            </button>
-          </div>
-        </div>
-
-        <div className="mb-6">
-          <h3 className="text-sm text-gray-400 mb-2 flex items-center">
-            <User className="h-4 w-4 mr-2" />
-            Nome de usuário
-          </h3>
-          <div className="flex items-center bg-[#2a2a2a] rounded p-2">
-            <p className="text-white text-sm flex-1 truncate">
-              {selectedPassword.username ||
-                selectedPassword.user ||
-                "usuario@email.com"}
-            </p>
-            <button
-              className="text-gray-400 hover:text-white p-1"
-              onClick={() =>
-                handleCopyToClipboard(
-                  selectedPassword.username ||
-                    selectedPassword.user ||
-                    "usuario@email.com",
-                  "Nome de usuário"
-                )
-              }
-            >
-              <Copy className="h-4 w-4" />
-            </button>
-          </div>
-        </div>
-
-        <div className="mb-6">
-          <h3 className="text-sm text-gray-400 mb-2 flex items-center">
-            <Shield className="h-4 w-4 mr-2" />
-            Senha
-          </h3>
-          <div className="flex items-center bg-[#2a2a2a] rounded p-2">
-            <p className="text-white text-sm flex-1 truncate">
-              {showPassword
-                ? selectedPassword.password || "********"
-                : "••••••••"}
-            </p>
-            <button
-              className="text-gray-400 hover:text-white p-1 mr-1"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? (
-                <EyeOff className="h-4 w-4" />
-              ) : (
-                <Eye className="h-4 w-4" />
-              )}
-            </button>
-            <button
-              className="text-gray-400 hover:text-white p-1"
-              onClick={() =>
-                handleCopyToClipboard(
-                  selectedPassword.password || "********",
-                  "Senha"
-                )
-              }
-            >
-              <Copy className="h-4 w-4" />
-            </button>
-          </div>
-        </div>
-
-        <div className="mb-6">
-          <h3 className="text-sm text-gray-400 mb-2">Notas</h3>
-          <div className="bg-[#2a2a2a] rounded p-3">
-            <p className="text-white text-sm">
-              {selectedPassword.notes || "Nenhuma nota adicionada."}
-            </p>
-          </div>
-        </div>
-
-        <div className="space-y-4">
-          <div className="flex items-center text-sm">
-            <Calendar className="h-4 w-4 text-gray-400 mr-2" />
-            <span className="text-gray-400">Criado em:</span>
-            <span className="text-white ml-2">
-              {selectedPassword.createdAt || "03/04/2025"}
-            </span>
-          </div>
-
-          <div className="flex items-center text-sm">
-            <Clock className="h-4 w-4 text-gray-400 mr-2" />
-            <span className="text-gray-400">Última modificação:</span>
-            <span className="text-white ml-2">03/04/2025</span>
-          </div>
-
-          {selectedPassword.isShared && (
-            <div className="flex items-center text-sm">
-              <LinkIcon className="h-4 w-4 text-gray-400 mr-2" />
-              <span className="text-gray-400">Compartilhado com:</span>
-              <span className="text-white ml-2">3 pessoas</span>
+    <>
+      {selectedItem && (
+        <div className="pr-2 pl-2 h-full flex flex-col bg-[#000000] text-white">
+          <div className="p-2 text-justify ">
+            <div>
+              <h2 className="text-center my-2 text-[#E0E0E0]">
+                {!editMode
+                  ? "Aqui você visualiza, edita, remove e acessa o site com um clique"
+                  : "Edite os dados de acesso"}
+              </h2>
             </div>
-          )}
+          </div>
+
+          <div className="border-t-2 border-r-2 border-l-2 border-[#141414] rounded-t-[8px]">
+            <ItemsDetailsPanelHeader
+              editMode={editMode}
+              handleEditItem={handleEditItem}
+              name={selectedItem?.plaintext.name}
+              setIconUrl={setIconUrl}
+              setSelectedPassword={setSelectedPassword}
+              url={selectedItem?.plaintext.url}
+            />
+          </div>
+
+          <div className="border-2 border-[#141414] rounded-b-[8px] overflow-auto custom-scrollbar-transparent pb-1">
+            {editMode && (
+              <>
+                <ItemDetailsPanelForm
+                  selectedItem={selectedItem}
+                  setEditMode={setEditMode}
+                />
+              </>
+            )}
+
+            {!editMode && (
+              <>
+                <ItemDetailsPanelItems
+                  url={selectedItem?.plaintext.url}
+                  copy={copy}
+                  type={type}
+                  password={selectedItem?.plaintext.password}
+                  setShowPassword={setShowPassword}
+                  showPassword={showPassword}
+                  handleCopyToClipboard={handleCopyToClipboard}
+                />
+                <VerticalDivider
+                  borderColor="border-[#292929]"
+                  sizeBorderBottom="2"
+                />
+                <ItemDetailsPanelAdicionalInformations
+                  handleGetTextColor={handleGetTextColor}
+                  profileMenuRef={profileMenuRef}
+                  setIsProfileOpen={setIsProfileOpen}
+                  isProfileOpen={isProfileOpen}
+                />
+                <VerticalDivider
+                  borderColor="border-[#292929]"
+                  sizeBorderBottom="2"
+                />
+              </>
+            )}
+            <div className={`${editMode ? "pb-0" : "pb-4"}`} />
+          </div>
+          <div className="mb-4" />
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 }

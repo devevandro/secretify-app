@@ -154,6 +154,18 @@
     background-color: #141414;
   }
 
+   .custom-scrollbar-transparent::-webkit-scrollbar {
+    width: 2px;
+  }
+
+  .custom-scrollbar-transparent::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
+
+  .custom-scrollbar-transparent::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
   .custom-font-family {
     font-family: 'Kanit', sans-serif;
   }

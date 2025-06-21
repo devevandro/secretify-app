@@ -2,13 +2,13 @@
 
 import { useRef, useEffect } from "react";
 import { LinkIcon } from "lucide-react";
-import ItemDetailsModal from "./ui/item-card/item-details-modal";
+import { ItemCardDetailsModal } from "./ui/item-card/item-card-details-modal";
 
-interface PasswordDetailsModalProps {
+interface ItemDetailsModalProps {
   isOpen: boolean;
   onClose: () => void;
   position: { top: number; left: number };
-  passwordDetails: {
+  itemDetails: {
     title: string;
     category: string;
     permissions: string;
@@ -19,12 +19,12 @@ interface PasswordDetailsModalProps {
   };
 }
 
-export default function PasswordDetailsModal({
+export function ItemDetailsModal({
   isOpen,
   onClose,
   position,
-  passwordDetails,
-}: PasswordDetailsModalProps) {
+  itemDetails,
+}: ItemDetailsModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -72,27 +72,27 @@ export default function PasswordDetailsModal({
     >
       <div className="p-4">
         <div className="space-y-3">
-          <ItemDetailsModal label="Título:" text={passwordDetails.title} />
-          <ItemDetailsModal
+          <ItemCardDetailsModal label="Título:" text={itemDetails.title} />
+          <ItemCardDetailsModal
             label="Categoria:"
-            text={passwordDetails.category}
+            text={itemDetails.category}
           />
-          <ItemDetailsModal
+          <ItemCardDetailsModal
             label="Permissões Da Senha:"
-            text={passwordDetails.permissions}
+            text={itemDetails.permissions}
           />
-          <ItemDetailsModal
+          <ItemCardDetailsModal
             label="Data Da Criação:"
-            text={passwordDetails.creationDate}
+            text={itemDetails.creationDate}
           />
-          <ItemDetailsModal
+          <ItemCardDetailsModal
             label="Hora Da Criação:"
-            text={passwordDetails.creationTime}
+            text={itemDetails.creationTime}
           />
-          <ItemDetailsModal label="Autor:" text={passwordDetails.author} />
+          <ItemCardDetailsModal label="Autor:" text={itemDetails.author} />
         </div>
 
-        {passwordDetails.sharingLink && (
+        {itemDetails.sharingLink && (
           <>
             <div className="my-4 border-t border-[#292929]"></div>
             <div>
@@ -102,7 +102,7 @@ export default function PasswordDetailsModal({
               <div className="flex items-center bg-[#2a2a2a] rounded p-2">
                 <LinkIcon className="h-4 w-4 text-gray-400 mr-2 flex-shrink-0" />
                 <p className="text-[#58beee] text-sm truncate">
-                  {passwordDetails.sharingLink}
+                  {itemDetails.sharingLink}
                 </p>
               </div>
             </div>

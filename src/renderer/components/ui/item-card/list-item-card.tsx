@@ -20,7 +20,7 @@ export default function ListItemCard({
   return (
     <>
       <div
-        className={`p-2 md:p-3 flex justify-center items-center bg-[#000000] transition-colors duration-200 relative`}
+        className={`pb-3 flex justify-center items-center bg-[#000000] transition-colors duration-200 relative`}
       >
         <div
           className={`absolute top-1 left-1 text-gray-500 transition-opacity duration-200 ${

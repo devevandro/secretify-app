@@ -4,11 +4,11 @@ export const IPC = {
     CREATE: "passwords:create",
   },
 
-  FAVORITES_SITES: {
-    FETCH_ALL: "favorites-sites:fetch_all",
+  MY_FAVORITES: {
+    FETCH_ALL: "my-favorites:fetch_all",
   },
 
-  FAVORITES: {
-    FETCH_ALL: "favorites:fetch_all",
+  COMMANDS: {
+    FETCH_ALL: "commands:fetch_all",
   },
 };

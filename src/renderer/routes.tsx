@@ -11,6 +11,7 @@ import SignupScreen from "./screens/signup";
 import PasswordsScreen from "./screens/passwords";
 import FavoritesSitesScreen from "./screens/favorites-sites";
 import SetupScreen from "./screens/setup-2fa";
+import CommandsScreen from "./screens/commands";
 
 export function AppRoutes() {
   return (
@@ -20,7 +21,8 @@ export function AppRoutes() {
           <Route path="/" element={<LoginScreen />} />
           <Route path="/verify" element={<VerifyScreen />} />
           {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-          {/* <Route path="/favorites" element={<FavoritesScreen />} /> */}
+          <Route path="/favorites" element={<FavoritesScreen />} />
+          <Route path="/commands" element={<CommandsScreen />} />
           {/* <Route path="/favorites-sites" element={<FavoritesSitesScreen />} /> */}
           <Route path="/trash" element={<TrashScreen />} />
           <Route path="/signup" element={<SetupScreen />} />

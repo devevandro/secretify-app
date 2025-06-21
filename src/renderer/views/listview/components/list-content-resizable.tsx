@@ -1,6 +1,6 @@
 "use client";
 
-import { JSX } from "react";
+import { JSX, useState } from "react";
 import { Hash, List, Lock, Share2, Wrench } from "lucide-react";
 
 import {
@@ -9,7 +9,7 @@ import {
   ResizablePanelGroup,
 } from "../../../components/ui/resizable";
 import ItemSection from "renderer/components/item-section";
-import PasswordDetailsPanel from "renderer/components/item-details-panel";
+import { ItemDetailsPanel } from "renderer/components/item-details-panel";
 import { ViewItemSection } from "renderer/views/components/view-item-section";
 
 export function ListContentResizable({
@@ -20,6 +20,7 @@ export function ListContentResizable({
   viewType,
   selectedItem,
   children,
+  setSelectedPassword,
 }: {
   isGridView: boolean;
   filteredDatas?: any;
@@ -28,7 +29,9 @@ export function ListContentResizable({
   viewType: "type" | "all";
   selectedItem: any | null;
   children: JSX.Element;
+  setSelectedPassword: (item: any) => void;
 }) {
+  const [resizable, setResizable] = useState<boolean>(false);
   return (
     <ResizablePanelGroup direction="horizontal" className="h-full">
       <ResizablePanel defaultSize={50} minSize={30} className="h-full">
@@ -36,22 +39,35 @@ export function ListContentResizable({
           title="Senhas"
           children={children}
           isGridView={isGridView}
-          viewType={viewType}
         />
       </ResizablePanel>
 
-      <ResizableHandle withHandle className="bg-[#292929] w-0.5" />
-
-      <ResizablePanel
-        defaultSize={50}
-        minSize={30}
-        className="bg-[#1a1a1a] overflow-y-auto custom-scrollbar"
-      >
-        <PasswordDetailsPanel
-          selectedPassword={selectedItem}
+      {!resizable && (
+        <ItemDetailsPanel
+          setResizable={setResizable}
+          setSelectedPassword={setSelectedPassword}
+          selectedItem={selectedItem}
           isLoading={isLoading && selectedItem === null}
         />
-      </ResizablePanel>
+      )}
+
+      {resizable && (
+        <>
+          <ResizableHandle withHandle className="bg-[#292929] w-0.5" />
+          <ResizablePanel
+            defaultSize={60}
+            minSize={30}
+            className="bg-[#1a1a1a] overflow-y-auto custom-scrollbar"
+          >
+            <ItemDetailsPanel
+              setResizable={setResizable}
+              setSelectedPassword={setSelectedPassword}
+              selectedItem={selectedItem}
+              isLoading={isLoading && selectedItem === null}
+            />
+          </ResizablePanel>
+        </>
+      )}
     </ResizablePanelGroup>
   );
 }
