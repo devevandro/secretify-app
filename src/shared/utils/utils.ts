@@ -25,3 +25,24 @@ export const setIconUrl = (url: string): string | undefined => {
 
   return iconUrl?.iconUrl;
 };
+
+export const verifyPassword = (password: string): string => {
+  const hasCapitalLetter = /[A-Z]/.test(password);
+  const hasNumber = /\d/.test(password);
+  const hasSymbol = /[\W_]/.test(password);
+  const passwordLength = password.length;
+
+  const requisitos = [hasCapitalLetter, hasNumber, hasSymbol].filter(
+    Boolean
+  ).length;
+
+  if (passwordLength > 8 && requisitos === 3) {
+    return "forte";
+  }
+
+  if (passwordLength > 6 && requisitos >= 2) {
+    return "média";
+  }
+
+  return "fraca";
+};

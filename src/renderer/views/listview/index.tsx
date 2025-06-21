@@ -43,6 +43,7 @@ export default function ListView(props: ItemsProps) {
             viewType={props.viewType}
             selectedItem={props.selectedItem}
             isGridView={props.isGridView}
+            setSelectedPassword={props.setSelectedPassword}
             children={
               <ListViewRender
                 handleCardClick={props.handleCardClick}

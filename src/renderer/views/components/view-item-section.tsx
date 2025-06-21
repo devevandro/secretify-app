@@ -4,18 +4,20 @@ import { JSX } from "react";
 
 import { Lock } from "lucide-react";
 import ItemSection from "renderer/components/item-section";
+import { useLocation } from "react-router-dom";
 
 export function ViewItemSection({
   title,
-  viewType,
   isGridView,
   children,
 }: {
   isGridView: boolean;
-  viewType: "type" | "all";
   title: string;
   children: JSX.Element;
 }) {
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   return (
     <div
       className={`${
@@ -25,9 +27,7 @@ export function ViewItemSection({
       }`}
     >
       <div className={`${!isGridView && "p-2 md:p-4 3xl:p-6"}`}>
-        {viewType === "all" ? (
-          <div>{children}</div>
-        ) : (
+        {currentPath === "recentes" && (
           <div>
             <ItemSection
               title={title}
@@ -37,6 +37,7 @@ export function ViewItemSection({
             </ItemSection>
           </div>
         )}
+        {currentPath !== "recentes" && <div>{children}</div>}
       </div>
     </div>
   );

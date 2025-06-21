@@ -34,6 +34,7 @@ export type ItemsProps = {
   handleCardClick: (item: any) => void;
   toggleSidebar: () => void;
   handleDeleteItem: (itemId: string) => void;
+  setSelectedPassword: (selectedPassword: any) => void;
 };
 
 export type ItemViewRenderProps = {
